@@ -1,0 +1,6 @@
+<div id="message-{{id}}" class="list-item" ng-repeat="item in result track by item.id">
+    <a ui-sref="message({id:item.id})">
+        <h3 ng-bind="item.title"></h3> 
+        <p ng-bind="item.excerpt"></p> 
+    </a>
+</div>

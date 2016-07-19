@@ -1,0 +1,96 @@
+<div class="display-table">
+    <div class="display-table-row">
+        <div class="display-table-cell">
+            
+            <header id="header">
+                <div class="container">
+<h1 ng-show="language == 'es'">Personas</h1>
+<h1 ng-show="language == 'en'">People</h1>
+<h1 ng-show="language == 'it'">Persone</h1>
+                </div>
+            </header>
+            <div class="header-tab">
+                <a href="#/histories" class="btn ">
+                    <i class="icon-historia"></i><br>
+<span ng-show="language == 'es'">Historia</span>
+<span ng-show="language == 'en'">History</span>
+<span ng-show="language == 'it'">Storia</span>
+                </a>
+                <a href="#/personages" class="btn active">
+                    <i class="icon-personajes"></i><br>
+<span ng-show="language == 'es'">Personas</span>
+<span ng-show="language == 'en'">People</span>
+<span ng-show="language == 'it'">Persone</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="display-table-row wrapper-content">
+        <div class="display-table-cell vertical_top">
+            <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
+            <main id="main">
+                
+                    <div class="listpeople">
+                        
+                        <div class="listpeople-item" ng-repeat="item in result">
+
+                            <a ui-sref="personage({id:item.id})">
+                                <img ng-src="{{ item.image }}" class="img">
+
+                                <h3><span ng-bind="item.firstname"></span> <span ng-bind="item.lastname"></span></h3>
+                                <div ng-bind="item.excerpt"></div>
+                                
+                            </a>
+                        </div>
+                        
+                    </div>
+               
+            </main>
+        </div>
+    </div>
+    <div class="display-table-row">
+        <div class="display-table-cell">
+            <footer id="footer">
+                <ul class="footer-menu">
+                    <li>
+                        <a href="#/messages/year" class="btn ">
+                            <i class="icon-mensajes"></i>
+                        </a>
+                    </li><!--
+                    --><li>
+                        <a href="#/news" class="btn">
+                            <i class="icon-noticias"></i>
+                        </a>
+                    </li><!--
+                    --><li>
+                        <a href="#/histories" class="btn active">
+                            <i class="icon-historia"></i>
+                        </a>
+                    </li><!--
+                    --><li>
+                        <a href="#/places/place" class="btn">
+                            <i class="icon-lugares"></i>
+                        </a>
+                    </li><!--
+                    --><li class="wrapper-languages wrapper-languages-js">
+                        <a href="javascript:void(0);" class="btn">
+                            <i class="icon-historia2"></i>
+                        </a>
+                        <ul class="languages languages-js " dropdown-languages set-current-language-reload>
+                            <li class="spain">
+                                <a href="javascript:void(0);" class="btn-language-js" data-lang="es" ng-click="showLanguage($event)"><img src="assets/icons/flag_spain.jpg"></a>
+                            </li>
+                            <li class="england">
+                                <a href="javascript:void(0);" class="btn-language-js" data-lang="en" ng-click="showLanguage($event)"><img src="assets/icons/flag_england.jpg"></a>
+                            </li>
+                            <li class="france">
+                                <a href="javascript:void(0);" class="btn-language-js" data-lang="it" ng-click="showLanguage($event)"><img src="assets/icons/flag_italy.jpg"></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+</div>

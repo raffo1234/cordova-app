@@ -1,0 +1,64 @@
+<div class="display-table">
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    
+                    <header id="header">
+                        <div class="container">
+                             <h1 ng-show="language == 'es'">Noticias</h1>
+                            <h1 ng-show="language == 'en'">News<h1>
+                            <h1 ng-show="language == 'it'">Notizie</h1>
+                        </div>
+                    </header>
+
+                </div>
+            </div>
+            <div class="display-table-row wrapper-content">
+                <div class="display-table-cell vertical_top">
+                    <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
+                    <main id="main" >
+                        <div class="content gray new-detail-js">
+
+
+                            <div class="carousel-img">
+                                <img src="assets/images/lugar_1.jpg" title="result.title" />
+                            </div>
+                            <h2 ng-bind="result.title"></h2>
+                            <div ng-bind-html="result.content"></div>
+
+
+                        </div>
+                        <br>
+                        <br>
+                    </main>
+                </div>
+            </div>
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    <footer id="footer" class="footer-circle">
+                        <div class="footer-bar"></div>
+                        <ul class="footer-menu ">
+                            <li>
+                                <a ui-sref="news" class="btn btn-back">
+                                    <i class="icon-arrow-left2"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn social-share-js">
+                                    <i class="icon-share2"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn favorite-js ">
+                                    <i class="icon-heart"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn mail-share-js">
+                                    <i class="icon-mensajes"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+        </div>

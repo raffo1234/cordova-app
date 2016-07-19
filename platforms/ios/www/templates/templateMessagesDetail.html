@@ -1,0 +1,83 @@
+<div class="display-table">
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    
+                    <header id="header">
+                        <div class="container">
+                            <h1>Mensajes</h1>
+                        </div>
+                    </header>
+
+                </div>
+            </div>
+            <div class="display-table-row wrapper-content">
+                <div class="display-table-cell vertical_top">
+                    <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
+                    <main id="main" >
+                        <div class="content ">
+                            <div class="message-detail-js">
+                                
+                                <h2 ng-bind="result.title"></h2>
+                                <div ng-bind-html="result.content"></div>
+
+                            </div>
+                            <br>    
+                            <br>    
+                           
+                            <div class="align_center">
+                                <img src="assets/icons/curva.png" width="60">
+                            </div>
+                             
+                            <br>
+                            <br>
+                            <ul class="notes">
+                                <li ng-repeat="item in notes" ng-bind="item.content"></li>
+                            </ul>
+                            <div class="form">
+                                <h3>Agregar una nota</h3>
+                                <form>
+                                    <textarea ng-model="note"></textarea>
+                                    <div class="align_right">
+                                        <button ng-click="addNote()" class="button display-inline">Agregar</button>
+                                        <!-- <a ng-click="dropTable()">Borrar table note</a> -->
+                                    </div>
+                                </form>
+
+                            </div>
+                            <br> 
+                            <br> 
+                             
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    <footer id="footer" class="footer-circle">
+                        <div class="footer-bar"></div>
+                        <ul class="footer-menu ">
+                            <li>
+                                <a ui-sref="messages.year" class="btn btn-back">
+                                    <i class="icon-arrow-left2"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn social-share-js">
+                                    <i class="icon-share2"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn favorite-js">
+                                    <i class="icon-heart"></i>
+                                </a>
+                            </li><!--
+                            --><li>
+                                <a href="javascript:void(0);" class="btn mail-share-js">
+                                    <i class="icon-mensajes"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+        </div>

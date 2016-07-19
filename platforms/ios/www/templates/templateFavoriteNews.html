@@ -1,0 +1,100 @@
+<div class="display-table">
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    
+                    <header id="header">
+                        <div class="container">
+                            <h1>Noticias</h1>
+                        </div>
+                    </header>
+                    <div class="header-tab">
+                        <a href="#/news" class="btn ">
+                            <i class="icon-newspaper"></i><br>
+                            Todos
+                        </a>
+                        <a href="#/favorite_news" class="btn active">
+                            <i class="icon-newspaper"></i><br>
+                            Preferidos
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="display-table-row wrapper-content">
+                <div class="display-table-cell vertical_top">
+                    <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
+                    <main id="main">
+                        
+                            <div class="listnews news-js">
+                                
+
+                                <div ng-show="result.length == 0" class="wrapper-alert">
+                                    <br>
+                                    <div class="alert alert-info">No hay noticias <strong>Preferidas</strong>.</div>
+                                </div>    
+                                <div class="listnews-item" ng-repeat="item in result">
+                                    <a ui-sref="favorite_new({id:item.id})">
+                                        <span class="date">
+                                            <span class="month">
+                                                10 <br>
+                                                Set
+                                            </span>
+                                            <span class="year">
+                                                2014
+                                            </span>
+                                        </span>        
+                                        <h3 ng-bind="item.title"></h3>
+                                        <p ng-bind="item.excerpt"></p>
+                                        <img src="assets/images/noticia_thumb_1.jpg" class="img" />
+                                    </a>
+                                </div>
+
+                            </div>
+                        
+                    </main>
+                </div>
+            </div>
+            <div class="display-table-row">
+                <div class="display-table-cell">
+                    <footer id="footer">
+                        <ul class="footer-menu">
+                            <li>
+	                        <a href="#/messages/year" class="btn ">
+	                            <i class="icon-mensajes"></i>
+	                        </a>
+		                    </li><!--
+		                    --><li>
+		                        <a href="#/news" class="btn active">
+		                            <i class="icon-noticias"></i>
+		                        </a>
+		                    </li><!--
+		                    --><li>
+		                        <a href="#/histories" class="btn ">
+		                            <i class="icon-historia"></i>
+		                        </a>
+		                    </li><!--
+		                    --><li>
+		                        <a href="#/places/place" class="btn">
+		                            <i class="icon-lugares"></i>
+		                        </a>
+		                    </li><!--
+                            --><li class="wrapper-languages wrapper-languages-js">
+                                <a href="javascript:void(0);" class="btn">
+                                    <i class="icon-historia2"></i>
+                                </a>
+                                <ul class="languages languages-js " dropdown-languages set-current-language-reload>
+		                            <li class="spain">
+		                                <a href="javascript:void(0);" class="btn-language-js" data-lang="es"><img src="assets/icons/flag_spain.jpg"></a>
+		                            </li>
+		                            <li class="england">
+		                                <a href="javascript:void(0);" class="btn-language-js" data-lang="en"><img src="assets/icons/flag_england.jpg"></a>
+		                            </li>
+		                            <li class="france">
+		                                <a href="javascript:void(0);" class="btn-language-js" data-lang="it"><img src="assets/icons/flag_italy.jpg"></a>
+		                            </li>
+		                        </ul>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+        </div>
