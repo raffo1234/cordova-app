@@ -42,7 +42,6 @@
             $scope.result = response;
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});
-
         }, function (error) {
             // alert("Error: " + error);
         });
