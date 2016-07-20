@@ -120,7 +120,6 @@ textarea, input[type="text"], input[type="number"], input[type="email"] {-webkit
   -moz-transition: background .5s;
   -ms-transition: background .5s;
   transition: background .5s;
-
 }
 .container{max-width: 1250px; margin: 0 auto; padding: 0 15px;}
 /* GENERALES */

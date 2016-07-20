@@ -59,9 +59,8 @@
 
         $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + '?fields=year&sort=+year')
             .success(function(response){
-                var uniqueYears = [];
-                var uniqueYearsJson = [];
 
+                // console.log(response);
                 $scope.years = response;
 
                 TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});

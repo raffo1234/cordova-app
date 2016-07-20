@@ -3,7 +3,7 @@
 
     angular.module('igospa.controllers').controller('messageDetailController', messageDetailController);
 
-    function messageDetailController($scope, $http, API_URL, $stateParams, dbNote, dbMessage, dbMessageTranslation, dbFavoriteMessage, dbFavoriteMessageTranslation){
+    function messageDetailController($scope, $http, API_URL, httpRequest, $stateParams, dbNote, dbMessage, dbMessageTranslation, dbFavoriteMessage, dbFavoriteMessageTranslation){
 
         var main = $('#main'),
         loading = $('.loading-js');
@@ -22,16 +22,19 @@
         /* ------------------------------------------ */
         // isOnline
         /* ------------------------------------------ */
-        $scope.result = []
+        $scope.result = [];
+        var message_id = null;
         $http({
             method: 'GET',
             url: API_URL.url + "message/" + localStorage.getItem('lang') + '/' + id,
 
         }).then(function(response){
+            // console.log(response);
             var response = response.data;
 
             $scope.result = response[0];
-
+            message_id = response[0].message_id;
+            // console.log(response[0].message_id);
             TweenLite.to(loading, .45, {autoAlpha: 0});
             TweenLite.to(main, 1, {autoAlpha: 1});
 
@@ -142,14 +145,16 @@
                 if(!self.hasClass('active')){
                     self.addClass('active');
 
-                    var data = {'id': id};
-                    var urlMessage = API_URL.url + '/messages/';
-                    var urlMessageTraslation = API_URL.url + '/messagesTraslation/';
-                    var promiseMessage = httpRequest.send("GET", urlMessage, data);
-                    var promiseMessageTraslation = httpRequest.send("GET", urlMessageTraslation, data);
+                    var urlMessage = API_URL.url + 'message-id/' + id;
+                    var urlMessageTraslation = API_URL.url + 'message-traslation-id/' + message_id;
+                    var promiseMessage = httpRequest.send("GET", urlMessage);
+                    var promiseMessageTraslation = httpRequest.send("GET", urlMessageTraslation);
 
                     promiseMessage.then(function (response){
                       $scope.isLoading = false;
+
+                      var message = [response];
+                      dbFavoriteMessage.insert(message);
                     }, function(error){
                       $scope.isLoading = false;
                       console.log('Hubo un problema');
@@ -157,19 +162,20 @@
 
                     promiseMessageTraslation.then(function (response){
                       $scope.isLoading = false;
+                      dbFavoriteMessageTranslation.insert(response);
                     }, function(error){
                       $scope.isLoading = false;
                       console.log('Hubo un problema');
                     });
 
-                    dbMessage.getById(id).then(function(response){ // id param
-                        var message = [response];
-                        dbFavoriteMessage.insert(message);
-                    });
+                    // dbMessage.getById(id).then(function(response){
+                    //     var message = [response];
+                    //     dbFavoriteMessage.insert(message);
+                    // });
 
-                    dbMessageTranslation.getByIdMessage(id).then(function(response){
-                        dbFavoriteMessageTranslation.insert(response);
-                    });
+                    // dbMessageTranslation.getByIdMessage(id).then(function(response){
+                    //     dbFavoriteMessageTranslation.insert(response);
+                    // });
 
                 }else{
                     self.removeClass('active');

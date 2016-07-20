@@ -168,7 +168,8 @@
                 name: 'favorite_message',
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
-                    {name: 'date_created', type: 'datetime'}
+                    {name: 'date_created', type: 'datetime'},
+                    {name: 'year', type: 'CHAR(4)'}
                 ]
             },
             {

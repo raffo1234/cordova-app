@@ -4,47 +4,40 @@
     angular.module('igospa.controllers').controller('favoriteMessagesController', favoriteMessagesController);
 
     function favoriteMessagesController($scope, $http, API_URL, $stateParams, $location, messagesServices, dbMessage, dbFavoriteMessage){
-        
-        // MESSAGES        
+
+        // MESSAGES
         var main = $('#main'),
         loading = $('.loading-js'),
         year = $stateParams.year || '';
 
         TweenLite.set(loading, {opacity: 1});
-        TweenLite.set(main, {opacity: 0});  
+        TweenLite.set(main, {opacity: 0});
 
         // MESSAGES YEARS
         var loading = $('.loading-js'),
         items = $('.messages-years-js');
-        
 
 
 
 
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // show language
-        /* ------------------------------------------ */            
+        /* ------------------------------------------ */
         $scope.language = localStorage.getItem('lang');
 
 
 
-
-
-
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // isOffline
-        /* ------------------------------------------ */    
-        dbFavoriteMessage.getByLanguage(localStorage.getItem('lang')).then(function(result){
+        /* ------------------------------------------ */
+        dbFavoriteMessage.getByLanguage(localStorage.getItem('lang')).then(function(response){
             var uniqueYears = [];
-            $.map(result, function(n, i){
-                var date = n['date_created'];
-                    var date_year_1 = date.split(' ');
-                    var date_year_2 = date_year_1[0].split('-');
-                    var date_year_3 = date_year_2[0];
-                    
-                    if($.inArray(date_year_3, uniqueYears) === -1) uniqueYears.push({year:date_year_3});
+            // console.log(response);
+            $.map(response, function(n, i){
+                var year = n['year'];
+                uniqueYears.push({year: year});
             });
-            
+
             $scope.years = uniqueYears;
 
             TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});

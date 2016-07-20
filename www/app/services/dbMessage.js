@@ -27,8 +27,7 @@
                 return DB.fetchAll(result);
             });
         };
-        
-        
+
 
         self.getLastSync = function(){
             return DB.query('SELECT MAX(lastModified) as lastSync FROM message')

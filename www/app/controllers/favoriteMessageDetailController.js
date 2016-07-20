@@ -12,12 +12,12 @@
         if(container.length == 0) return false;
 
         var id = $stateParams.id || '';
-        
 
-                    
-        /* ------------------------------------------ */    
+
+
+        /* ------------------------------------------ */
         // isOffline
-        /* ------------------------------------------ */  
+        /* ------------------------------------------ */
         $scope.result = [];
         dbFavoriteMessage.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
 
@@ -26,20 +26,20 @@
             TweenLite.to(main, 1, {opacity: 1});
 
             shareButtons(response);
-        }); 
+        });
 
 
 
 
         return;
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // isOnline
-        /* ------------------------------------------ */  
+        /* ------------------------------------------ */
         $scope.result = []
         $http({
             method: 'GET',
             url: API_URL.url + "message/" + localStorage.getItem('lang') + '/' + id,
-            
+
         }).then(function(response){
             var response = response.data;
             
