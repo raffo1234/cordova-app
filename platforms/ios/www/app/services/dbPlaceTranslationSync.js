@@ -28,11 +28,11 @@
 
 
     // places SERVICES
-    angular.module('igospa.services').service("placesTranslationServicesGetAll", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("placesTranslationServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (modifiedSince) {
             var defer = $q.defer();
             $http({
-                url: "http://rafaelmeza.com/projects/igospa/api/v1/places-translation-all/",
+                url: API_URL.url + "places-translation-all/",
                 method: 'GET',
                 params: {modifiedSince: modifiedSince}
             })

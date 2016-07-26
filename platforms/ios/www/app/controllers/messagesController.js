@@ -3,66 +3,65 @@
 
     angular.module('igospa.controllers').controller('messagesController', messagesController);
 
-    function messagesController($scope, $http, $stateParams, $location, messagesServices, dbMessage 
-        
+    function messagesController($scope, $http, LIMIT, ITEMS_BY_PAGE, API_URL, $stateParams, $location, messagesServices, dbMessage,
+        dbMessageSync,
+        dbMessageTranslationSync
+
         ){
-        
-        // MESSAGES        
+
+        // MESSAGES
         var main = $('#main'),
         loading = $('.loading-js'),
         year = $stateParams.year || '';
 
-        TweenLite.set(loading, {opacity: 1});
-        TweenLite.set(main, {opacity: 0});  
+        TweenLite.set(loading, {autoAlpha: 1});
+        TweenLite.set(main, {autoAlpha: 0});
 
         // MESSAGES YEARS
         var loading = $('.loading-js'),
         items = $('.messages-years-js');
-        
-
-        
 
 
-        /* ------------------------------------------ */    
-        // isOffline
-        /* ------------------------------------------ */    
-        dbMessage.getByLanguage(localStorage.getItem('lang')).then(function(result){
-            var uniqueYears = [];
-            $.map(result, function(n, i){
-                var date = n['date_created'];
-                    var date_year_1 = date.split(' ');
-                    var date_year_2 = date_year_1[0].split('-');
-                    var date_year_3 = date_year_2[0];
-                    
-                    if($.inArray(date_year_3, uniqueYears) === -1) uniqueYears.push({year:date_year_3});
-            });
-            
-            $scope.years = uniqueYears;
-
-            TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});
-            TweenLite.to(items, 1, {delay: 0, autoAlpha: 1});
-        });
+        /* ------------------------------------------ */
+        // show language
+        /* ------------------------------------------ */
+        $scope.language = localStorage.getItem('lang');
 
 
 
 
-        /* ------------------------------------------ */    
-        // isOnline
-        /* ------------------------------------------ */    
-        return false;
-        $http.get("http://rafaelmeza.com/projects/igospa/api/v1/messages/" + localStorage.getItem('lang') + '?fields=date_created&sort=-date_created')
-            .success(function(response){
-                var uniqueYears = [];
+        /* ------------------------------------------ */
+        // Pagging
+        /* ------------------------------------------ */
+
+        $scope.getMoreItems = function(page){
+            $scope.offset = $scope.offset + ITEMS_BY_PAGE;
+            $scope.isLoading = 'true';
+            var promesa = messagesServices.getData($scope.year, $scope.offset, LIMIT);
+            promesa.then(function (response) {
                 $.map(response, function(n, i){
-                    var date = n['date_created'];
-                        var date_year_1 = date.split(' ');
-                        var date_year_2 = date_year_1[0].split('-');
-                        var date_year_3 = date_year_2[0];
-                        
-                        if($.inArray(date_year_3, uniqueYears) === -1) uniqueYears.push({year:date_year_3});
+                    $scope.result.push(n);
                 });
-                
-                $scope.years = uniqueYears;
+                $scope.isLoading = 'false';
+                TweenLite.to(loading, .45, {opacity: 0});
+                TweenLite.to(main, 1, {opacity: 1});
+
+            }, function (error) {
+                // alert("Error: " + error);
+            });
+        };
+
+
+
+        /* ------------------------------------------ */
+        // isOnline
+        /* ------------------------------------------ */
+
+        $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + '?fields=year&sort=-date')
+            .success(function(response){
+
+                // console.log("Mensajes", response);
+                $scope.years = response;
 
                 TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});
                 TweenLite.to(items, 1, {delay: 0, autoAlpha: 1});
@@ -70,14 +69,56 @@
             .error(function(){
 
             })
+
+
+
+        return false;
+        /* ------------------------------------------ */
+        // populate
+        /* ------------------------------------------ */
+        dbMessageSync.getAllData(function(){
+
+            dbMessageTranslationSync.getAllData();
+
+            /* ------------------------------------------ */
+            // isOffline
+            /* ------------------------------------------ */
+            dbMessage.getByLanguage(localStorage.getItem('lang')).then(function(result){
+                var uniqueYears = [];
+                var uniqueYearsJson = [];
+                console.log(result);
+                $.map(result, function(n, i){
+
+                    var year = n['year'];
+
+                    if($.inArray(year, uniqueYears) === -1){
+                        uniqueYears.push(year);
+                    }
+
+                });
+                $.map(uniqueYears, function(n, i){
+                    uniqueYearsJson.push({year: n})
+                });
+
+                $scope.years = uniqueYearsJson;
+
+
+                TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});
+                TweenLite.to(items, 1, {delay: 0, autoAlpha: 1});
+            });
+
+
+        });
+
     }
 
 
+
     // MESSAGES SERVICES
-    angular.module('igospa.services').service("messagesServices", ["$http", "$q", function ($http, $q) {
-        this.getData = function (year) {
+    angular.module('igospa.services').service("messagesServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (year, offset, limit) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/messages/" + localStorage.getItem('lang') + "?sort=-date_created&year=" + year)
+            $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + "?sort=-date&year=" + year + "&offset=" + offset + "&limit=" + limit)
                     .success(function (data) {
                         defer.resolve(data);
                     })
@@ -88,6 +129,8 @@
             return defer.promise;
         };
     }
-]);
+    ]);
+
+
 })();
 

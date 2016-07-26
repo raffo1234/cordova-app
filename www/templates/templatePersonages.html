@@ -1,7 +1,7 @@
 <div class="display-table">
     <div class="display-table-row">
         <div class="display-table-cell">
-            
+
             <header id="header">
                 <div class="container">
 <h1 ng-show="language == 'es'">Personas</h1>
@@ -23,29 +23,32 @@
 <span ng-show="language == 'it'">Persone</span>
                 </a>
             </div>
-            
+
         </div>
     </div>
     <div class="display-table-row wrapper-content">
         <div class="display-table-cell vertical_top">
             <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
             <main id="main">
-                
+
                     <div class="listpeople">
-                        
+
                         <div class="listpeople-item" ng-repeat="item in result">
 
                             <a ui-sref="personage({id:item.id})">
-                                <img ng-src="{{ item.image }}" class="img">
 
                                 <h3><span ng-bind="item.firstname"></span> <span ng-bind="item.lastname"></span></h3>
                                 <div ng-bind="item.excerpt"></div>
-                                
+                                <span ng-repeat="img in item.images_arr|limitTo:1" >
+                                    <img ng-src="{{img.image}}" class="img">
+                                </span>
+
+
                             </a>
                         </div>
-                        
+
                     </div>
-               
+
             </main>
         </div>
     </div>

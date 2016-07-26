@@ -9,6 +9,9 @@
     function setCurrentLanguage(){
         return {
             restrict: 'A',
+            scope: {
+                language: '&'
+            },
             link: function ($scope, element, attrs) {
                 
                 var currentLanguage = '';
@@ -18,6 +21,8 @@
 			        var self = $(this);
 			        currentLanguage = self.data('lang');
 			        localStorage.setItem('lang', currentLanguage);
+
+                    
 			    });
             
              }

@@ -3,8 +3,13 @@
 
     angular.module('igospa')
     .constant('API_URL', {
-        url: 'http://rafaelmeza.com/projects/igospa/api/v1/'
+        url: 'http://igospa.dhdinc.info/api/v1/'
     })
+    .constant('ADMIN_URL', {
+        url: 'http://igospa.dhdinc.info/admin/'
+    })
+    .constant('LIMIT', '10')
+    .constant('ITEMS_BY_PAGE', '10')
     .constant('DB_CONFIG', {
         name: 'igospa',
         tables: [
@@ -28,7 +33,10 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'date_updated', type: 'CHAR(20)'}
+                    {name: 'year', type: 'CHAR(4)'},
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -50,7 +58,9 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'image', type: 'CHAR(150)'}
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -61,7 +71,9 @@
                     {name: 'language_code', type: 'CHAR(2)'},
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
 
@@ -69,7 +81,9 @@
                 name: 'history',
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
-                    {name: 'date_created', type: 'DATETIME'}
+                    {name: 'date_created', type: 'DATETIME'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -80,7 +94,9 @@
                     {name: 'language_code', type: 'CHAR(2)'},
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
 
@@ -89,7 +105,19 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'images', type: 'CHAR(200)'}
+                    {name: 'images', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
+                ]
+            },
+            {
+                name: 'people_image',
+                columns: [
+                    {name: 'id', type: 'INTEGER primary key'},
+                    {name: 'people_id', type: 'INTEGER'},
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -101,7 +129,9 @@
                     {name: 'firstname', type: 'TEXT'},
                     {name: 'lastname', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
 
@@ -110,7 +140,19 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'image', type: 'CHAR(200)'}
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
+                ]
+            },
+            {
+                name: 'place_image',
+                columns: [
+                    {name: 'id', type: 'INTEGER primary key'},
+                    {name: 'place_id', type: 'INTEGER'},
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -130,7 +172,9 @@
                 name: 'favorite_message',
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
-                    {name: 'date_created', type: 'datetime'}
+                    {name: 'date_created', type: 'datetime'},
+                    {name: 'year', type: 'CHAR(4)'},
+                    {name: 'date', type: 'CHAR(10)'}
                 ]
             },
             {

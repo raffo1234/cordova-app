@@ -4,7 +4,9 @@
                     
                     <header id="header">
                         <div class="container">
-                            <h1>Noticias</h1>
+                             <h1 ng-show="language == 'es'">Noticias</h1>
+                            <h1 ng-show="language == 'en'">News<h1>
+                            <h1 ng-show="language == 'it'">Notizie</h1>
                         </div>
                     </header>
 
@@ -21,7 +23,7 @@
                                 <img src="assets/images/lugar_1.jpg" title="result.title" />
                             </div>
                             <h2 ng-bind="result.title"></h2>
-                            <div ng-bind="result.content"></div>
+                            <div ng-bind-html="result.content"></div>
 
 
                         </div>

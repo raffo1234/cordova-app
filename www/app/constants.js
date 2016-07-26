@@ -5,6 +5,9 @@
     .constant('API_URL', {
         url: 'http://igospa.dhdinc.info/api/v1/'
     })
+    .constant('ADMIN_URL', {
+        url: 'http://igospa.dhdinc.info/admin/'
+    })
     .constant('LIMIT', '10')
     .constant('ITEMS_BY_PAGE', '10')
     .constant('DB_CONFIG', {
@@ -31,6 +34,7 @@
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
                     {name: 'year', type: 'CHAR(4)'},
+                    {name: 'date', type: 'CHAR(10)'},
                     {name: 'lastModified', type: 'VARCHAR(50)'},
                     {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
@@ -169,7 +173,8 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'datetime'},
-                    {name: 'year', type: 'CHAR(4)'}
+                    {name: 'year', type: 'CHAR(4)'},
+                    {name: 'date', type: 'CHAR(10)'}
                 ]
             },
             {

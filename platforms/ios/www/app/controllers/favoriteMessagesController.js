@@ -3,35 +3,48 @@
 
     angular.module('igospa.controllers').controller('favoriteMessagesController', favoriteMessagesController);
 
-    function favoriteMessagesController($scope, $http, $stateParams, $location, messagesServices, dbMessage, dbFavoriteMessage){
-        
-        // MESSAGES        
+    function favoriteMessagesController($scope, $http, API_URL, $stateParams, $location, messagesServices, dbMessage, dbFavoriteMessage){
+
+        // MESSAGES
         var main = $('#main'),
         loading = $('.loading-js'),
         year = $stateParams.year || '';
 
         TweenLite.set(loading, {opacity: 1});
-        TweenLite.set(main, {opacity: 0});  
+        TweenLite.set(main, {opacity: 0});
 
         // MESSAGES YEARS
         var loading = $('.loading-js'),
         items = $('.messages-years-js');
-        
-        /* ------------------------------------------ */    
+
+
+
+
+        /* ------------------------------------------ */
+        // show language
+        /* ------------------------------------------ */
+        $scope.language = localStorage.getItem('lang');
+
+
+
+        /* ------------------------------------------ */
         // isOffline
-        /* ------------------------------------------ */    
-        dbFavoriteMessage.getByLanguage(localStorage.getItem('lang')).then(function(result){
+        /* ------------------------------------------ */
+        dbFavoriteMessage.getByLanguage(localStorage.getItem('lang')).then(function(response){
+            var uniqueYearsArr = [];
             var uniqueYears = [];
-            $.map(result, function(n, i){
-                var date = n['date_created'];
-                    var date_year_1 = date.split(' ');
-                    var date_year_2 = date_year_1[0].split('-');
-                    var date_year_3 = date_year_2[0];
-                    
-                    if($.inArray(date_year_3, uniqueYears) === -1) uniqueYears.push({year:date_year_3});
+            // console.log(uniqueYears);
+            $.map(response, function(n, i){
+                var year = n['year'];
+                if($.inArray(year, uniqueYearsArr) === -1){
+
+                    uniqueYearsArr.push(year);
+                    uniqueYears.push({year:year});
+                }
             });
-            
+
             $scope.years = uniqueYears;
+            // console.log($scope.years);
 
             TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});
             TweenLite.to(items, 1, {delay: 0, autoAlpha: 1});
@@ -40,22 +53,26 @@
 
 
 
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // isOnline
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         return false;
-        $http.get("http://rafaelmeza.com/projects/igospa/api/v1/messages/" + localStorage.getItem('lang') + '?fields=date_created&sort=-date_created')
+        $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + '?fields=date_created&sort=-date_created')
             .success(function(response){
+                var uniqueYearsArr = [];
                 var uniqueYears = [];
                 $.map(response, function(n, i){
                     var date = n['date_created'];
                         var date_year_1 = date.split(' ');
                         var date_year_2 = date_year_1[0].split('-');
                         var date_year_3 = date_year_2[0];
-                        
-                        if($.inArray(date_year_3, uniqueYears) === -1) uniqueYears.push({year:date_year_3});
+
+                        if($.inArray(date_year_3, uniqueYears) === -1) {
+                            uniqueYearsArr.push(date_year_3);
+                            uniqueYears.push({year:date_year_3})
+                        };
                 });
-                
+
                 $scope.years = uniqueYears;
 
                 TweenLite.to(loading, .45, {delay: 0, autoAlpha: 0});
@@ -67,21 +84,6 @@
     }
 
 
-    // MESSAGES SERVICES
-    angular.module('igospa.services').service("messagesServices", ["$http", "$q", function ($http, $q) {
-        this.getData = function (year) {
-            var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/messages/" + localStorage.getItem('lang') + "?sort=-date_created&year=" + year)
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
 
-            return defer.promise;
-        };
-    }
-]);
 })();
 

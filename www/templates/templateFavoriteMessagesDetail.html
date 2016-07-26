@@ -1,7 +1,7 @@
 <div class="display-table">
             <div class="display-table-row">
                 <div class="display-table-cell">
-                    
+
                     <header id="header">
                         <div class="container">
                             <h1>Mensajes</h1>
@@ -16,22 +16,26 @@
                     <main id="main" >
                         <div class="content ">
                             <div class="message-detail-js">
-                                
+
                                 <h2 ng-bind="result.title"></h2>
+                                <small ng-bind="result.date"></small>
                                 <div ng-bind-html="result.content"></div>
 
                             </div>
-                            <br>    
-                            <br>    
-                           
+                            <br>
+                            <br>
+
                             <div class="align_center">
                                 <img src="assets/icons/curva.png" width="60">
                             </div>
-                             
+
                             <br>
                             <br>
                             <ul class="notes">
-                                <li ng-repeat="item in notes" ng-bind="item.content"></li>
+                                <li ng-repeat="item in notes" >
+                                    <span ng-bind="item.content"></span>
+                                    <a href="javascript:void(0);" ng-click="removeNote($index, item.id);">(x)</a>
+                                </li>
                             </ul>
                             <div class="form">
                                 <h3>Agregar una nota</h3>

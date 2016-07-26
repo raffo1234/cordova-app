@@ -6,7 +6,8 @@
 
 <div id="message-{{id}}" class="list-item" ng-repeat="item in result track by item.id">
     <a ui-sref="favorite_message({id:item.id})">
-        <h3 ng-bind="item.title"></h3> 
-        <p ng-bind="item.excerpt"></p> 
+        <h3 ng-bind="item.title"></h3>
+        <small ng-bind="item.date"></small>
+        <p ng-bind="item.excerpt"></p>
     </a>
 </div>

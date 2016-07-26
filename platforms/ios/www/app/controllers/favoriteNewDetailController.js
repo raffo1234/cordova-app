@@ -131,10 +131,10 @@
     }
 
 
-    angular.module('igospa.services').service("newDetailServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("newDetailServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (id, $location) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/new/" + localStorage.getItem('lang') + '/' + id)
+            $http.get(API_URL.url + "new/" + localStorage.getItem('lang') + '/' + id)
                     .success(function (data) {
                         defer.resolve(data);
                     })

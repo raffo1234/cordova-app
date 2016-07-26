@@ -1,34 +1,33 @@
 (function () {
     'use strict';
-    
+
     angular.module('igospa.services').factory('dbMessage', ['DB', dbMessage]);
 
     // language
     function dbMessage(DB) {
         var self = this;
-            
+
         self.insert = function(items, callback) {
             var l = items.length;
-            
+
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT OR REPLACE INTO message (id, date_created, year, lastModified, deleted) VALUES (?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.lastModified, e.deleted]);
-                
+                DB.query("INSERT OR REPLACE INTO message (id, date_created, year, date, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date, e.lastModified, e.deleted]);
+
             }
             if (typeof callback === "function") {
                 callback();
             }
         };
-        
+
         self.all = function() {
             return DB.query('SELECT * FROM message')
             .then(function(result){
                 return DB.fetchAll(result);
             });
         };
-        
-        
+
 
         self.getLastSync = function(){
             return DB.query('SELECT MAX(lastModified) as lastSync FROM message')

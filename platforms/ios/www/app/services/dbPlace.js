@@ -13,7 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT INTO place (id, date_created, image) VALUES (?, ?, ?)", [e.id, e.date_created, e.image]);
+                DB.query("INSERT OR REPLACE INTO place (id, date_created, image, lastModified, deleted) VALUES (?, ?, ?, ?, ?)", [e.id, e.date_created, e.image, e.lastModified, e.deleted]);
                 console.log(e.id + ' inserted!')
             }
         };
@@ -25,6 +25,13 @@
             });
         };
         
+         self.getLastSync = function(){
+            return DB.query('SELECT MAX(lastModified) as lastSync FROM place')
+            .then(function(result){
+                return DB.fetch(result, true); // true => width lastSync
+            });
+        };
+
         self.getById = function(id) {
             return DB.query('SELECT * FROM place WHERE id = ?', [id])
             .then(function(result){
@@ -33,10 +40,10 @@
         };
 
         self.getByLanguage = function(lang) {
-            var query = 'SELECT p.*, pt.title, pt.content' +
+            var query = 'SELECT p.*, p.deleted, pt.title, pt.content' +
                 ' FROM place p' +
                 ' INNER JOIN place_translation pt ON p.id = pt.place_id' + 
-                ' WHERE pt.language_code = ? ORDER BY date_created DESC';
+                ' WHERE pt.language_code = ? AND p.deleted=0 ORDER BY p.id ASC';
             return DB.query(query, [lang])
             .then(function(result){
                 return DB.fetchAll(result);
@@ -44,10 +51,10 @@
         };
 
         self.getByIdLanguage = function(id, lang) {
-            var query = 'SELECT p.*, pt.title, pt.content' +
+            var query = 'SELECT p.*, p.deleted, pt.title, pt.content' +
                 ' FROM place p' +
                 ' INNER JOIN place_translation pt ON p.id = pt.place_id' + 
-                ' WHERE pt.place_id = ? AND pt.language_code = ? ORDER BY date_created DESC';
+                ' WHERE pt.place_id = ? AND pt.language_code = ? AND p.deleted=0 ORDER BY id ASC';
             return DB.query(query, [id, lang])
             .then(function(result){
                 return DB.fetchAll(result);

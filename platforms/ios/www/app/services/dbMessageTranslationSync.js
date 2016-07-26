@@ -7,14 +7,14 @@
     function dbMessageTranslationSync(dbMessageTranslation, messagesTranslationServicesGetAll) {
         var self = this;
         
-        self.getAllData = function () {
+        self.getAllData = function (callback) {
 
             dbMessageTranslation.getLastSync().then(function(lastSync){
                 
                 var promesa = messagesTranslationServicesGetAll.getData(lastSync);
                 promesa.then(function (response) {
 
-                    dbMessageTranslation.insert(response);
+                    dbMessageTranslation.insert(response, callback);
 
                 }, function (error) {
                     // alert("Error: " + error);
@@ -28,11 +28,11 @@
 
 
     // MESSAGES SERVICES
-    angular.module('igospa.services').service("messagesTranslationServicesGetAll", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("messagesTranslationServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (modifiedSince) {
             var defer = $q.defer();
             $http({
-                url: "http://rafaelmeza.com/projects/igospa/api/v1/messages-translation-all/",
+                url: API_URL.url + "messages-translation-all/",
                 method: 'GET',
                 params: {modifiedSince: modifiedSince}
             })

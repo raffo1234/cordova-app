@@ -1,7 +1,7 @@
 <div class="display-table">
     <div class="display-table-row">
         <div class="display-table-cell">
-            
+
             <header id="header">
                 <div class="container">
 <h1 ng-show="language == 'es'">Lugares</h1>
@@ -12,25 +12,25 @@
             <div class="header-carousel header-carousel-places">
                 <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="32" />
                 <div class="header-carousel-inner header-carousel-inner-js header-places">
-                    
-                    <a ui-sref="places.place({id: item.id})" class="btn-thumb" ui-sref-active="active" ng-repeat="item in result | orderBy:'id' track by item.id" >
-                       	<span style="background-image: url('{{ item.image }}'); background-size: cover;"></span>
-                    </a>
 
+                    <a ui-sref="places.place({id: item.id})" class="btn-thumb" ui-sref-active="active" ng-repeat="item in result | orderBy:'id' track by item.id" >
+                       	<span style="background-image: url('{{ img.image }}'); background-size: cover;" ng-repeat="img in item.images_arr | limitTo:1"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <pre>{{ result | json }}</pre> -->
     <div class="display-table-row wrapper-content">
         <div class="display-table-cell vertical_top">
             <img src="assets/icons/loading-dark.svg" class="loading loading-detail-js" width="42" />
             <main id="main">
                 <div class="content place-detail-js">
-                   	
+
 					<div ui-view></div>
-					
+
                 </div>
-                	
+
             </main>
         </div>
     </div>

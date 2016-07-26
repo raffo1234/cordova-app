@@ -131,6 +131,7 @@ h1{font-family: 'robotobold'; font-size: 2em; line-height: 1em; color: #fff; tex
 h2{font-family: 'robotomedium'; font-size: 1.5em; line-height: 1.3em; color: #404042; margin-bottom: 20px; text-align: center; margin-top: .5em; display: inline-block; width: 100%;}
 h3{font-family: 'robotomedium'; font-size: 1.25em; line-height: 1.3em; color: #404042; margin-bottom: 12px;}
 p{margin-bottom: 20px; font: inherit;}
+small{font-size: 0.8em; font-weight: bold; color: #391599;}
 .container{padding-left: 20px; padding-right: 20px;}
 .wrapper-alert{padding: 0 20px;}
 .alert {
@@ -228,7 +229,7 @@ body.gray{background-color: #f4f4f4;}
 /*BOTON*/
 .btn{
   cursor: pointer; display: inline-block; border: none; text-align: center;
-  color: #fff; 
+  color: #fff;
   background-color: #391599;
   text-align: center;  font-size: 21px;
   -webkit-transition: background-color 0.3s ease;
@@ -238,8 +239,9 @@ body.gray{background-color: #f4f4f4;}
   transition: background-color 0.3s ease;
 }
 .btn:active, .btn.active{
-  background-color: #763ba9;
+  background-color: #4280c9;
 }
+.btn.favorite-js.active{ background-color: #e81254; }
 .form {padding-top: 20px;}
 .form h3{display: inline-block; margin-bottom: 8px;}
 textarea{border: 1px solid #d4d2d2; display: block; width: 100%; height: 100px; margin-bottom: 10px; padding: 15px; font: inherit;
@@ -300,8 +302,12 @@ textarea:focus{border-color: #888;}
 .carousel-img img{display: block; max-width: 100%; width: 100%;}
 
 
-/* CAROUSE */
-.carousel-js .owl-dots{position: absolute; left: 0; right: 0; bottom: 0; text-align: center;}
+.carousel-js{white-space: nowrap; overflow-y: hidden;}
+.carousel-item{display: inline-block;}
+
+
+/* CAROUSEL */
+.carousel-js .owl-dots{position: absolute; left: 0; right: 0; bottom: 10px; text-align: center;}
 .carousel-js .owl-dots .owl-dot{width: 12px; height: 12px;  background-color: #fff; display: inline-block; margin: 0 4px;
 
     -moz-border-radius: 50%;
@@ -318,6 +324,9 @@ textarea:focus{border-color: #888;}
   
  }
 
+
+/* NOTES */
+.notes li a { border: none; }
 
 /*LIST*/
 .list{}

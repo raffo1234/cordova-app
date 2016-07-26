@@ -3,10 +3,32 @@
 
     angular.module('igospa.controllers').controller('historiesController', historiesController);
 
-    function historiesController($scope, $http, $stateParams, $location, historiesServices, dbHistory){
+    function historiesController($scope, $http, $stateParams, $location, historiesServices, dbHistory,
+        dbHistorySync, 
+        dbHistoryTranslationSync){
+
         var main = $('#main'),
         loading = $('.loading-js');
         
+
+        /* ------------------------------------------ */    
+        // populate
+        /* ------------------------------------------ */    
+        dbHistorySync.getAllData();    
+        dbHistoryTranslationSync.getAllData(); 
+
+
+
+
+
+        /* ------------------------------------------ */    
+        // show language
+        /* ------------------------------------------ */            
+        $scope.language = localStorage.getItem('lang');
+
+
+
+
 
         /* ------------------------------------------ */    
         // isOffline
@@ -38,10 +60,10 @@
 
 
     // MESSAGES SERVICES
-    angular.module('igospa.services').service("historiesServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("historiesServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function ($location) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/histories/" + localStorage.getItem('lang'))
+            $http.get(API_URL.url + "histories/" + localStorage.getItem('lang'))
                     .success(function (data) {
                         defer.resolve(data);
                     })

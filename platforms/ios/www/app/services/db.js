@@ -3,7 +3,7 @@
 
 
     angular.module('igospa.services').factory('DB', ['$q', 'DB_CONFIG', DB]);
-    
+
     function DB($q, DB_CONFIG) {
         var self = this;
         self.db = null;

@@ -13,7 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT INTO history_translation (id, history_id, language_code, title, excerpt, content) VALUES (?, ?, ?, ?, ?, ?)", [e.id, e.history_id, e.language_code, e.title, e.excerpt, e.content])                
+                DB.query("INSERT OR REPLACE INTO history_translation (id, history_id, language_code, title, excerpt, content, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [e.id, e.history_id, e.language_code, e.title, e.excerpt, e.content, e.lastModified, e.deleted])                
             }
         };
             
@@ -24,6 +24,13 @@
             });
         };
         
+        self.getLastSync = function(){
+            return DB.query('SELECT MAX(lastModified) as lastSync FROM history_translation')
+            .then(function(result){
+                return DB.fetch(result, true); // true => width lastSync
+            });
+        };
+
         self.getById = function(id) {
             return DB.query('SELECT * FROM history_translation WHERE id = ?', [id])
             .then(function(result){

@@ -1,7 +1,7 @@
 <div class="display-table">
             <div class="display-table-row">
                 <div class="display-table-cell">
-                    
+
                     <header id="header">
                         <div class="container">
                             <h1 ng-show="language == 'es'">Mensajes</h1>
@@ -18,25 +18,29 @@
                     <main id="main" >
                         <div class="content ">
                             <div class="message-detail-js">
-                                
+
                                 <h2 ng-bind="result.title"></h2>
+                                <small ng-bind="result.date"></small>
                                 <div ng-bind-html="result.content"></div>
 
                             </div>
-                            <br>    
-                            <br>    
-                           
+                            <br>
+                            <br>
+
                             <div class="align_center">
                                 <img src="assets/icons/curva.png" width="60">
                             </div>
-                             
+
                             <br>
                             <br>
                             <ul class="notes">
-                                <li ng-repeat="item in notes" ng-bind="item.content"></li>
+                                <li ng-repeat="item in notes" >
+                                    <span ng-bind="item.content"></span>
+                                    <a href="javascript:void(0);" ng-click="removeNote($index, item.id);">(x)</a>
+                                </li>
                             </ul>
                             <div class="form">
-                                
+
                                 <h3 ng-show="language == 'es'">Agregar una nota</h3>
                                 <h3 ng-show="language == 'en'">Add a note</h3>
                                 <h3 ng-show="language == 'it'">Aggiungere una nota</h3>
@@ -46,16 +50,16 @@
                                         <button ng-click="addNote()" class="button display-inline">
                                             <span ng-show="language == 'es'">Agregar</span>
                                             <span ng-show="language == 'en'">Add</span>
-                                            <span ng-show="language == 'it'">Aggiungere</span>  
+                                            <span ng-show="language == 'it'">Aggiungere</span>
                                         </button>
                                         <!-- <a ng-click="dropTable()">Borrar table note</a> -->
                                     </div>
                                 </form>
 
                             </div>
-                            <br> 
-                            <br> 
-                             
+                            <br>
+                            <br>
+
                         </div>
                     </main>
                 </div>

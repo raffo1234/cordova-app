@@ -33,13 +33,6 @@
 
 
 
-        /* ------------------------------------------ */
-        // Pagging
-        /* ------------------------------------------ */
-
-
-
-
 
 
         /* ------------------------------------------ */
@@ -49,6 +42,7 @@
         var promesa = messagesServices.getData(year, offset, limit);
 
         promesa.then(function (response) {
+            // console.log("Mensajes", response);
             $scope.result = response;
             $scope.$parent.result = response;
             $scope.$parent.offset = 0;

@@ -5,10 +5,10 @@
 
     function dbNote(DB) {
         var self = this;
-        
+
         self.insert = function(id_message, notes) {
             var l = notes.length;
-            
+
             var e;
             for (var i = 0; i < l; i++) {
                 e = notes[i];
@@ -22,7 +22,7 @@
                 return DB.fetchAll(result);
             });
         };
-        
+
         self.getById = function(id) {
             return DB.query('SELECT * FROM note WHERE id = ?', [id])
             .then(function(result){
@@ -37,10 +37,14 @@
             });
         };
 
+        self.deleteById = function(id) {
+            return DB.query('DELETE FROM note WHERE id = ?', [id])
+        };
+
         self.dropTable = function() {
             return DB.query('DROP TABLE note');
         };
-        
+
         return self;
     };
 

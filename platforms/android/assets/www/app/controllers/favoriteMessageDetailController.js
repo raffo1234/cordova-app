@@ -12,12 +12,12 @@
         if(container.length == 0) return false;
 
         var id = $stateParams.id || '';
-        
 
-                    
-        /* ------------------------------------------ */    
+
+
+        /* ------------------------------------------ */
         // isOffline
-        /* ------------------------------------------ */  
+        /* ------------------------------------------ */
         $scope.result = [];
         dbFavoriteMessage.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
 
@@ -26,20 +26,20 @@
             TweenLite.to(main, 1, {opacity: 1});
 
             shareButtons(response);
-        }); 
+        });
 
 
 
 
         return;
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // isOnline
-        /* ------------------------------------------ */  
+        /* ------------------------------------------ */
         $scope.result = []
         $http({
             method: 'GET',
             url: API_URL.url + "message/" + localStorage.getItem('lang') + '/' + id,
-            
+
         }).then(function(response){
             var response = response.data;
             
@@ -56,14 +56,14 @@
             var title = response[0]['title'],
                 content = response[0]['content'],
                 url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
-
+                
             /************************************
             *****    SOCIAL SHARE   **************
             ************************************/
             var btn = $('.social-share-js');
             btn.on('click', function(e){
                 e.preventDefault();
-
+                console.log(response);
                 var message = {
                     text: title,
                     url: url
@@ -92,22 +92,31 @@
             /************************************
             *****    INSERT NOTA   **************
             ************************************/
-            var notes = [];
-            $scope.notes = [];
             $scope.addNote = function(){
                 if(!$scope.note) return false;
-                var note = {id_message: id, content: $scope.note}; // "id" ya se obtuvo al inicio
-                notes.push(note);
+                var note_obj = {id_message: id, content: $scope.note}; // "id" ya se obtuvo al inicio
+                var notes = [];
+                notes.push(note_obj);
                 dbNote.insert(id, notes);
 
-                $scope.notes.push(note);
+                $scope.notes.push(note_obj);
                 $scope.note = '';
+            }
+
+            /************************************
+            *****    DELETE NOTA   **************
+            ************************************/
+            $scope.removeNote = function(idx, id){
+                if(!$scope.notes) return false;
+                dbNote.deleteById(id);
+                $scope.notes.splice(idx, 1);
+
             }
 
             /************************************
             *****    GET ALL NOTAS   **************
             ************************************/
-            
+
             dbNote.getByIdMessage(id).then(function(result){
                 $scope.notes = result;
             });

@@ -100,16 +100,25 @@
             /************************************
             *****    INSERT NOTA   **************
             ************************************/
-            var notes = [];
-            $scope.notes = [];
             $scope.addNote = function(){
                 if(!$scope.note) return false;
-                var note = {id_message: id, content: $scope.note}; // "id" ya se obtuvo al inicio
-                notes.push(note);
+                var note_obj = {id_message: id, content: $scope.note}; // "id" ya se obtuvo al inicio
+                var notes = [];
+                notes.push(note_obj);
                 dbNote.insert(id, notes);
 
-                $scope.notes.push(note);
+                $scope.notes.push(note_obj);
                 $scope.note = '';
+            }
+
+            /************************************
+            *****    DELETE NOTA   **************
+            ************************************/
+            $scope.removeNote = function(idx, id){
+                if(!$scope.notes) return false;
+                dbNote.deleteById(id);
+                $scope.notes.splice(idx, 1);
+
             }
 
             /************************************
@@ -118,7 +127,9 @@
 
             dbNote.getByIdMessage(id).then(function(result){
                 $scope.notes = result;
+                // console.log($scope.notes);
             });
+
 
 
             /************************************

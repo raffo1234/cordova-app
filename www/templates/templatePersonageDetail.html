@@ -30,8 +30,8 @@
             <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
             <main id="main">
                 <div class="people">
-                    <div class="img">
-                        <img src="assets/images/personas/{{result[0].people_id}}-1.jpg">
+                    <div class="img" ng-repeat="img in result[0].images_arr|limitTo:1">
+                        <img ng-src="{{img.image}}" class="img">
                     </div>
                     <div class="txt">
                         <div class="helper"></div><!--
@@ -43,26 +43,11 @@
                 </div>
                 <!-- {{ result[0].people_id }} -->
                 <div class="header-carousel header-carouse-personas">
-                    <div class="header-carousel-inner active header-people">
-                        <div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-1.jpg">
+                    <div class="header-carousel-inner active header-people"><!--
+                        --><div  class="btn-thumb" ng-repeat="img in result[0].images_arr">
+                            <img ng-src="{{img.image}}" />
                         </div><!--
-                        --><div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-2.jpg">
-                        </div><!--
-                        --><div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-3.jpg">
-                        </div><!--
-                        --><div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-4.jpg">
-                        </div><!--
-                        --><div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-5.jpg">
-                        </div><!--
-                        --><div  class="btn-thumb">
-                            <img src="assets/images/personas/{{result[0].people_id}}-6.jpg">
-                        </div>
-                    </div>
+                    --></div>
                 </div>
                 <!-- {{ result }} -->
                 <div class="content" ng-bind-html="result[0].content"></div>

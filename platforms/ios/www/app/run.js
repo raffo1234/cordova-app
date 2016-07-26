@@ -21,30 +21,34 @@
         'dbPeopleTranslationSync', 
         'dbPlace', 
         'dbPlaceSync', 
+        'dbPlaceImage',
+        'dbPlaceImageSync',
         'dbPlaceTranslation', 
         'dbPlaceTranslationSync', 
-        function ($rootScope, $state, $stateParams, DB, dbLanguage, 
-            dbMessage, 
-            dbMessageSync, 
-            dbMessageTranslation, 
+        function ($rootScope, $state, $stateParams, DB, dbLanguage,
+            dbMessage,
+            dbMessageSync,
+            dbMessageTranslation,
             dbMessageTranslationSync,
-            dbNew, 
-            dbNewSync, 
-            dbNewTranslation, 
-            dbNewTranslationSync, 
-            dbHistory, 
-            dbHistorySync, 
-            dbHistoryTranslation, 
-            dbHistoryTranslationSync, 
-            dbPeople, 
-            dbPeopleSync, 
-            dbPeopleTranslation, 
-            dbPeopleTranslationSync, 
-            dbPlace, 
-            dbPlaceSync, 
-            dbPlaceTranslation, 
+            dbNew,
+            dbNewSync,
+            dbNewTranslation,
+            dbNewTranslationSync,
+            dbHistory,
+            dbHistorySync,
+            dbHistoryTranslation,
+            dbHistoryTranslationSync,
+            dbPeople,
+            dbPeopleSync,
+            dbPeopleTranslation,
+            dbPeopleTranslationSync,
+            dbPlace,
+            dbPlaceSync,
+            dbPlaceImage,
+            dbPlaceImageSync,
+            dbPlaceTranslation,
             dbPlaceTranslationSync ) {
-        	
+
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
@@ -53,51 +57,54 @@
 
 
             // set default language
-            localStorage.setItem('lang', 'es');
+            if(localStorage.getItem('lang') === null){
+                localStorage.setItem('lang', 'es');
+            }
 
 
             // Populate table language
             var languages = [
                     {code: 'es', name: 'Español'},
-                    {code: 'en', name: 'Inglés'},                
-                    {code: 'it', name: 'Italiano'}                
-                ];            
+                    {code: 'en', name: 'Inglés'},
+                    {code: 'it', name: 'Italiano'}
+                ];
             dbLanguage.insert(languages);
 
 
             // if !isOnline return false;
             // ...
 
-            
+
 
             // Populate websql - local database
 
             // Mensajes
-            dbMessageSync.getAllData();    
-            dbMessageTranslationSync.getAllData();    
+            // dbMessageSync.getAllData();
+            // dbMessageTranslationSync.getAllData();
 
             // News
-            dbNewSync.getAllData();    
-            dbNewTranslationSync.getAllData();    
+            dbNewSync.getAllData();
+            dbNewTranslationSync.getAllData();
 
             // History
-            dbHistorySync.getAllData();    
-            dbHistoryTranslationSync.getAllData();    
+            dbHistorySync.getAllData();
+            dbHistoryTranslationSync.getAllData();
 
             // People
-            dbPeopleSync.getAllData();    
-            dbPeopleTranslationSync.getAllData();    
+            // dbPeopleSync.getAllData();
+            // dbPeopleTranslationSync.getAllData();
 
             // Place
-            dbPlaceSync.getAllData();    
-            dbPlaceTranslationSync.getAllData();    
+            // dbPlaceSync.getAllData();
+            // dbPlaceImageSync.getAllData();
+            // dbPlaceTranslationSync.getAllData();
 
 
 
 
 
-            // dbMessage.dropTable();
-            // dbMessageTranslation.dropTable();
+            // dbHistory.dropTable();
+            // dbHistoryTranslation.dropTable();
         }
       ]
     );

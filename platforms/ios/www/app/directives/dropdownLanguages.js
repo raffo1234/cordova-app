@@ -7,9 +7,9 @@
         return {
             restrict: 'A',
             link: function ($scope, element, attrs) {
-                
+
                 var ele = $('.wrapper-languages-js');
-                    
+
                 ele.on('click', function(){
                     var self = $(this);
 
@@ -17,10 +17,10 @@
                         self.addClass('active');
                         TweenLite.to($('.languages li').eq(2), 0.4, {delay: 0,
                             autoAlpha: 1, left: 0
-                        });   
+                        });
                         TweenLite.to($('.languages li').eq(1), 0.4, {delay: 0.3,
                             autoAlpha: 1, left: 0
-                        });   
+                        });
                         TweenLite.to($('.languages li').eq(0), 0.4, {delay: 0.5,
                             autoAlpha: 1, left: 0
                         });

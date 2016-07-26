@@ -11,6 +11,18 @@
         
         
 
+
+
+        /* ------------------------------------------ */    
+        // show language
+        /* ------------------------------------------ */            
+        $scope.language = localStorage.getItem('lang');
+
+
+
+
+
+
         /* ------------------------------------------ */    
         // isOffline
         /* ------------------------------------------ */
@@ -47,10 +59,10 @@
         });
     }
 
-    angular.module('igospa.services').service("historyDetailServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("historyDetailServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (id) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/history/" + localStorage.getItem('lang') + '/' + id)
+            $http.get(API_URL.url + "history/" + localStorage.getItem('lang') + '/' + id)
                     .success(function (data) {
                         defer.resolve(data);
                     })

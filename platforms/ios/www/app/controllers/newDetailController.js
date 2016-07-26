@@ -9,6 +9,13 @@
         var id = $stateParams.id;
         
         
+
+               /* ------------------------------------------ */    
+        // show language
+        /* ------------------------------------------ */            
+        $scope.language = localStorage.getItem('lang');
+
+        
         /* ------------------------------------------ */    
         // isOffline
         /* ------------------------------------------ */  
@@ -54,6 +61,7 @@
 
 
         function shareButtons(response){
+            
             var title = response[0]['title'],
                 content = response[0]['content'],
                 url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
@@ -131,10 +139,10 @@
     }
 
 
-    angular.module('igospa.services').service("newDetailServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("newDetailServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (id, $location) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/new/" + localStorage.getItem('lang') + '/' + id)
+            $http.get(API_URL.url + "new/" + localStorage.getItem('lang') + '/' + id)
                     .success(function (data) {
                         defer.resolve(data);
                     })

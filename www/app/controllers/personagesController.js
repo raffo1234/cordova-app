@@ -3,9 +3,9 @@
 
     angular.module('igospa.controllers').controller('personagesController', personagesController);
 
-    function personagesController($scope, $http, $stateParams, $location, personagesServices,
-        dbPeople, 
-        dbPeopleSync, 
+    function personagesController($scope, $http, ADMIN_URL, $stateParams, $location, personagesServices,
+        dbPeople,
+        dbPeopleSync,
         dbPeopleImageSync,
         dbPeopleTranslationSync){
 
@@ -19,7 +19,6 @@
         // dbPeopleSync.getAllData();
         // dbPeopleImageSync.getAllData();
         // dbPeopleTranslationSync.getAllData();
-
 
 
 
@@ -38,13 +37,16 @@
         var promesa = personagesServices.getData($location);
         var result = [];
         promesa.then(function (response) {
-            console.log(response);
+
             $scope.result = response;
+
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});
         }, function (error) {
             // alert("Error: " + error);
         });
+
+
 
 
         return false;

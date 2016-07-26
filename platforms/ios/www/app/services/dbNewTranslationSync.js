@@ -7,14 +7,18 @@
     function dbNewTranslationSync(dbNewTranslation, newsTranslationServicesGetAll) {
         var self = this;
         
-        self.getAllData = function ($location) {
-            var promesa = newsTranslationServicesGetAll.getData();
-            promesa.then(function (response) {
+        self.getAllData = function () {
 
-                dbNewTranslation.insert(response);
-                
-            }, function (error) {
-                // alert("Error: " + error);
+            dbNewTranslation.getLastSync().then(function(lastSync){
+
+                var promesa = newsTranslationServicesGetAll.getData(lastSync);
+                promesa.then(function (response) {
+
+                    dbNewTranslation.insert(response);
+                    
+                }, function (error) {
+                    // alert("Error: " + error);
+                });    
             });    
         }
         
@@ -23,16 +27,20 @@
 
 
     // news SERVICES
-    angular.module('igospa.services').service("newsTranslationServicesGetAll", ["$http", "$q", function ($http, $q) {
-        this.getData = function ($location) {
+    angular.module('igospa.services').service("newsTranslationServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (modifiedSince) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/news-translation-all/")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
+            $http({
+                url: API_URL.url + "news-translation-all/",
+                method: 'GET',
+                params: {modifiedSince: modifiedSince}
+            })
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (data) {
+                defer.reject(data);
+            });
 
             return defer.promise;
         };

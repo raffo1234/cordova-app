@@ -50,7 +50,6 @@
         {
             "file": "plugins/cordova-plugin-social-message/www/socialmessage.js",
             "id": "cordova-plugin-social-message.SocialMessage",
-            "pluginId": "cordova-plugin-social-message",
             "clobbers": [
                 "socialmessage"
             ]

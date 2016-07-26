@@ -1,6 +1,7 @@
 <div id="message-{{id}}" class="list-item" ng-repeat="item in result | limitTo: limitTotal track by item.id">
     <a ui-sref="message({id: item.id})">
         <h3 ng-bind="item.title"></h3>
+        <small ng-bind="item.date"></small>
         <p ng-bind="item.excerpt"></p>
     </a>
 </div>

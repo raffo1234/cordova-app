@@ -7,14 +7,18 @@
     function dbPeopleTranslationSync(dbPeopleTranslation, peopleTranslationServicesGetAll) {
         var self = this;
         
-        self.getAllData = function ($location) {
-            var promesa = peopleTranslationServicesGetAll.getData();
-            promesa.then(function (response) {
+        self.getAllData = function () {
 
-                dbPeopleTranslation.insert(response);
-                
-            }, function (error) {
-                // alert("Error: " + error);
+            dbPeopleTranslation.getLastSync().then(function(lastSync){
+
+                var promesa = peopleTranslationServicesGetAll.getData(lastSync);
+                promesa.then(function (response) {
+                    
+                    dbPeopleTranslation.insert(response);
+                    
+                }, function (error) {
+                    // alert("Error: " + error);
+                });    
             });    
         }
         
@@ -23,16 +27,20 @@
 
 
     // people SERVICES
-    angular.module('igospa.services').service("peopleTranslationServicesGetAll", ["$http", "$q", function ($http, $q) {
-        this.getData = function ($location) {
+    angular.module('igospa.services').service("peopleTranslationServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (modifiedSince) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/people-translation-all/")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
+            $http({
+                url: API_URL.url + "people-translation-all/",
+                method: 'GET',
+                params: {modifiedSince: modifiedSince}
+            })
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (data) {
+                defer.reject(data);
+            });
 
             return defer.promise;
         };

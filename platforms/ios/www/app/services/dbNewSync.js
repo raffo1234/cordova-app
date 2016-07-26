@@ -9,29 +9,36 @@
         
         self.getAllData = function () {
             
-            var promesa = newServicesGetAll.getData();
-            promesa.then(function (response) {
-           
-                dbNew.insert(response);
-                
-            }, function (error) {
-                // alert("Error: " + error);
+            dbNew.getLastSync().then(function(lastSync){
+
+                var promesa = newServicesGetAll.getData(lastSync);
+                promesa.then(function (response) {
+               
+                    dbNew.insert(response);
+                    
+                }, function (error) {
+                    // alert("Error: " + error);
+                });  
             });  
         }
         
         return self;
     };  
 
-    angular.module('igospa.services').service("newServicesGetAll", ["$http", "$q", function ($http, $q) {
-        this.getData = function () {
+    angular.module('igospa.services').service("newServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (modifiedSince) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/news-all/")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
+            $http({
+                url: API_URL.url + "news-all/",
+                method: 'GET',
+                params: {modifiedSince: modifiedSince}
+            })
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (data) {
+                defer.reject(data);
+            });
 
             return defer.promise;
         };

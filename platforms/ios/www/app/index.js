@@ -1,15 +1,15 @@
 (function () {
 	'use strict';
 
-	angular.module('igospa', ['igospa.directives', 'igospa.controllers', 'igospa.services', 'ui.router', 'ngSanitize']);
+	angular.module('igospa', ['igospa.directives', 'igospa.controllers', 'igospa.services', 'ui.router', 'ngSanitize', 'infinite-scroll']);
 	angular.module('igospa.directives', []);
 	angular.module('igospa.controllers', []);
 	angular.module('igospa.services', []);
 
-	
+
 	// CONFIG
 	angular.module('igospa')
-	
+
 	.config(
 	  [          '$stateProvider', '$urlRouterProvider',
 	    function ($stateProvider,   $urlRouterProvider) {
@@ -29,9 +29,20 @@
 	          controller: 'messagesController'
 	        })
 	        .state('messages.year', {
-	          url: '/year/:year',
+	          url: '/year/:year?offset&limit',
 	          params: {
-				year: {value: null, squash: true}
+				year: {
+					value: null,
+					squash: true
+				},
+				offset: {
+		            value: '0',
+		            squash: true
+		        },
+		        limit: {
+		            value: '10',
+		            squash: true
+		        }
 			  },
 	          templateUrl: 'templates/templateMessagesByYear.html',
 	          controller: 'messagesByYearController'

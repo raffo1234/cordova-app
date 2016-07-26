@@ -23,6 +23,19 @@
 
 
 
+
+
+
+        /* ------------------------------------------ */    
+        // show language
+        /* ------------------------------------------ */            
+        $scope.language = localStorage.getItem('lang');
+
+
+
+
+
+
         /* ------------------------------------------ */    
         // isOnline
         /* ------------------------------------------ */  
@@ -41,10 +54,10 @@
     }
 
 
-    angular.module('igospa.services').service("newsServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("newsServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function () {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/news/" + localStorage.getItem('lang'))
+            $http.get(API_URL.url + "news/" + localStorage.getItem('lang'))
                     .success(function (data) {
                         defer.resolve(data);
                     })

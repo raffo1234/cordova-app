@@ -9,29 +9,36 @@
         
         self.getAllData = function () {
             
-            var promesa = historyServicesGetAll.getData();
-            promesa.then(function (response) {
-           
-                dbHistory.insert(response);
-                
-            }, function (error) {
-                // alert("Error: " + error);
+            dbHistory.getLastSync().then(function(lastSync){
+
+                var promesa = historyServicesGetAll.getData(lastSync);
+                promesa.then(function (response) {
+               
+                    dbHistory.insert(response);
+                    
+                }, function (error) {
+                    // alert("Error: " + error);
+                });  
             });  
         }
         
         return self;
     };  
 
-    angular.module('igospa.services').service("historyServicesGetAll", ["$http", "$q", function ($http, $q) {
-        this.getData = function () {
+    angular.module('igospa.services').service("historyServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (modifiedSince) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/histories-all/")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
+            $http({
+                url: API_URL.url + "histories-all/",
+                method: 'GET',
+                params: {modifiedSince: modifiedSince}
+            })
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (data) {
+                defer.reject(data);
+            });
 
             return defer.promise;
         };

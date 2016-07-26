@@ -3,10 +3,32 @@
 
     angular.module('igospa.controllers').controller('newsController', newsController);
 
-    function newsController($scope, $http, $stateParams, $location, newsServices, dbNew){
+    function newsController($scope, $http, $stateParams, $location, newsServices, dbNew,
+        dbNewSync,
+        dbNewTranslationSync
+        ){
         var main = $('#main'),
         loading = $('.loading-js');
         var items = $('.news-js');
+
+
+        
+
+        /* ------------------------------------------ */    
+        // show language
+        /* ------------------------------------------ */            
+        $scope.language = localStorage.getItem('lang');
+
+
+
+
+
+
+        /* ------------------------------------------ */    
+        // populate
+        /* ------------------------------------------ */    
+        dbNewSync.getAllData();    
+        dbNewTranslationSync.getAllData(); 
 
 
 
@@ -42,10 +64,10 @@
     }
 
 
-    angular.module('igospa.services').service("newsServices", ["$http", "$q", function ($http, $q) {
+    angular.module('igospa.services').service("newsServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function () {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/news/" + localStorage.getItem('lang'))
+            $http.get(API_URL.url + "news/" + localStorage.getItem('lang'))
                     .success(function (data) {
                         defer.resolve(data);
                     })

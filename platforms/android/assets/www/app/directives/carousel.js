@@ -4,13 +4,12 @@
 
     angular.module('igospa.directives').directive('carousel', carousel);
 
-    function carousel(){
+    function carousel($timeout){
         return {
-            restrict: 'A',
-            link: function ($scope, element, attrs) {
-                
-                var item = element.find('.carousel-item');    
-                
+            restrict: 'E',
+            link: function (scope, element, attrs) {
+
+                var item = element.find('.carousel-item');
                 element.owlCarousel({
                     items: 1,
                     autoplay: false,
@@ -18,6 +17,7 @@
                     autoplayTimeout: 5000,
                     dots: true,
                     nav: false,
+                    lazyLoad:true,
                     autoWidth: false,
                     slideBy: 1,
                     callbacks: true,

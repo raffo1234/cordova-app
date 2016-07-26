@@ -7,15 +7,18 @@
     function dbMessageSync(dbMessage, messagesServicesGetAll) {
         var self = this;
         
-        self.getAllData = function () {
+        self.getAllData = function (callback) {
             
-            var promesa = messagesServicesGetAll.getData();
-            promesa.then(function (response) {
-           
-                dbMessage.insert(response);
-                
-            }, function (error) {
-                // alert("Error: " + error);
+            dbMessage.getLastSync().then(function(lastSync){
+
+                var promesa = messagesServicesGetAll.getData(lastSync);
+                promesa.then(function (response) {
+               
+                    dbMessage.insert(response, callback);
+                    
+                }, function (error) {
+                    // alert("Error: " + error);
+                });
             });  
         }
         
@@ -24,16 +27,20 @@
 
 
     // MESSAGES SERVICES
-    angular.module('igospa.services').service("messagesServicesGetAll", ["$http", "$q", function ($http, $q) {
-        this.getData = function () {
+    angular.module('igospa.services').service("messagesServicesGetAll", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+        this.getData = function (modifiedSince) {
             var defer = $q.defer();
-            $http.get("http://rafaelmeza.com/projects/igospa/api/v1/messages-all/")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (data) {
-                        defer.reject(data);
-                    });
+            $http({
+                url: API_URL.url + "messages-all/",
+                method: 'GET',
+                params: {modifiedSince: modifiedSince}
+            })
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (data) {
+                defer.reject(data);
+            });
 
             return defer.promise;
         };
