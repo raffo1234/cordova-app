@@ -13,7 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT INTO favorite_message (id, date_created, year, date) VALUES (?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date]);
+                DB.query("INSERT INTO favorite_message (id, date_created, year, date_original, date) VALUES (?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date_original, e.date]);
                 console.log(e.id + ' inserted!')
             }
         };
@@ -36,7 +36,7 @@
             var query = 'SELECT m.*, mt.title, mt.excerpt' +
                 ' FROM favorite_message m' +
                 ' INNER JOIN favorite_message_translation mt ON m.id = mt.message_id' +
-                ' WHERE mt.language_code = ? ORDER BY m.date DESC ';
+                ' WHERE mt.language_code = ? ORDER BY m.date_original DESC ';
             return DB.query(query, [lang])
             .then(function(result){
                 return DB.fetchAll(result);
@@ -44,8 +44,9 @@
         };
 
         self.getByIdLanguage = function(id, lang) {
-            var query = 'SELECT title, content ' +
-                ' FROM favorite_message_translation' +
+            var query = 'SELECT m.*, mt.* ' +
+                ' FROM favorite_message m' +
+                ' INNER JOIN favorite_message_translation mt ON m.id = mt.message_id' +
                 ' WHERE message_id = ? AND language_code = ?';
             return DB.query(query, [id, lang])
             .then(function(result){
@@ -57,7 +58,7 @@
             var query = "SELECT m.*, mt.title, mt.excerpt" +
                 " FROM favorite_message m" +
                 " INNER JOIN favorite_message_translation mt ON m.id = mt.message_id" +
-                " WHERE year LIKE ? AND mt.language_code = ? ORDER BY m.date DESC ";
+                " WHERE year LIKE ? AND mt.language_code = ? ORDER BY m.date_original DESC ";
             return DB.query(query, ["%" + year + "%", lang])
             .then(function(result){
                 return DB.fetchAll(result);

@@ -35,7 +35,7 @@
         /* ------------------------------------------ */
 
         $scope.getMoreItems = function(page){
-            $scope.offset = $scope.offset + ITEMS_BY_PAGE;
+            $scope.offset = $scope.offset * 1 + ITEMS_BY_PAGE * 1;
             $scope.isLoading = 'true';
             var promesa = messagesServices.getData($scope.year, $scope.offset, LIMIT);
             promesa.then(function (response) {
@@ -118,7 +118,7 @@
     angular.module('igospa.services').service("messagesServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
         this.getData = function (year, offset, limit) {
             var defer = $q.defer();
-            $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + "?sort=-date&year=" + year + "&offset=" + offset + "&limit=" + limit)
+            $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + "?sort=-date_original&year=" + year + "&offset=" + offset + "&limit=" + limit)
                     .success(function (data) {
                         defer.resolve(data);
                     })

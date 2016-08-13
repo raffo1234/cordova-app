@@ -229,7 +229,7 @@ body.gray{background-color: #f4f4f4;}
 /*BOTON*/
 .btn{
   cursor: pointer; display: inline-block; border: none; text-align: center;
-  color: #fff; 
+  color: #fff;
   background-color: #391599;
   text-align: center;  font-size: 21px;
   -webkit-transition: background-color 0.3s ease;
@@ -241,6 +241,7 @@ body.gray{background-color: #f4f4f4;}
 .btn:active, .btn.active{
   background-color: #4280c9;
 }
+.btn.favorite-js.active{ background-color: #e81254; }
 .form {padding-top: 20px;}
 .form h3{display: inline-block; margin-bottom: 8px;}
 textarea{border: 1px solid #d4d2d2; display: block; width: 100%; height: 100px; margin-bottom: 10px; padding: 15px; font: inherit;
