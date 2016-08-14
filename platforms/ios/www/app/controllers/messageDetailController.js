@@ -43,28 +43,11 @@
         });
 
 
-
-        return;
-        /* ------------------------------------------ */
-        // isOffline
-        /* ------------------------------------------ */
-        $scope.result = [];
-        dbMessage.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
-
-            $scope.result = response[0];
-
-            TweenLite.to(loading, .45, {opacity: 0});
-            TweenLite.to(main, 1, {opacity: 1});
-
-            shareButtons(response);
-        });
-
-
-
         function shareButtons(response){
-            var title = response[0]['title'],
+            var title = response[0]['date'] + ' - ' + response[0]['title'],
+                date = response[0]['date'],
                 content = response[0]['content'],
-                url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                url = response[0]['urlweb'];
 
             /************************************
             *****    SOCIAL SHARE   **************
@@ -129,7 +112,6 @@
                 $scope.notes = result;
                 // console.log($scope.notes);
             });
-
 
 
             /************************************

@@ -1,13 +1,11 @@
 <div class="display-table">
             <div class="display-table-row">
                 <div class="display-table-cell">
-
                     <header id="header">
                         <div class="container">
                             <h1>Mensajes</h1>
                         </div>
                     </header>
-
                 </div>
             </div>
             <div class="display-table-row wrapper-content">
@@ -16,9 +14,8 @@
                     <main id="main" >
                         <div class="content ">
                             <div class="message-detail-js">
-{{  }}
                                 <h2 ng-bind="result.title"></h2>
-                                <small ng-bind="result.date">ddd</small>
+                                <small class="small-date" ng-bind="result.date"></small>
                                 <div ng-bind-html="result.content"></div>
 
                             </div>
@@ -48,9 +45,9 @@
                                 </form>
 
                             </div>
-                            <br> 
-                            <br> 
-                             
+                            <br>
+                            <br>
+
                         </div>
                     </main>
                 </div>

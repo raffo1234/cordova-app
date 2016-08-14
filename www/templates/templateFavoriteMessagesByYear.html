@@ -3,11 +3,19 @@
     <div ng-show="language == 'en'" class="alert alert-info">No messages <strong>favorites</strong>.</div>
     <div ng-show="language == 'it'" class="alert alert-info">Nessun messaggio <strong>preferiti</strong>.</div>
 </div>
-
 <div id="message-{{id}}" class="list-item" ng-repeat="item in result track by item.id">
     <a ui-sref="favorite_message({id:item.id})">
+        <span class="date">
+            <span class="month">
+               <date ng-bind="item.date_day"></date> <br>
+               <date ng-bind="item.date_mon"></date>
+            </span>
+            <span class="year">
+               <date ng-bind="item.date_yea"></date>
+            </span>
+         </span>
         <h3 ng-bind="item.title"></h3>
-        <small ng-bind="item.date"></small>
+        <!-- <small ng-bind="item.date"></small> -->
         <p ng-bind="item.excerpt"></p>
     </a>
 </div>

@@ -35,6 +35,9 @@
                     {name: 'date_created', type: 'DATETIME'},
                     {name: 'year', type: 'CHAR(4)'},
                     {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'},
                     {name: 'lastModified', type: 'VARCHAR(50)'},
                     {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
@@ -175,7 +178,10 @@
                     {name: 'date_created', type: 'datetime'},
                     {name: 'year', type: 'CHAR(4)'},
                     {name: 'date_original', type: 'CHAR(10)'},
-                    {name: 'date', type: 'CHAR(10)'}
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'}
                 ]
             },
             {

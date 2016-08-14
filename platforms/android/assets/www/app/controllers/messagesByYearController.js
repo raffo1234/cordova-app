@@ -3,7 +3,7 @@
 
     angular.module('igospa.controllers').controller('messagesByYearController', messagesByYearController);
 
-    function messagesByYearController($scope, LIMIT, $state, $http, $stateParams, $location, messagesServices, dbMessage, 
+    function messagesByYearController($scope, LIMIT, $state, $http, $stateParams, $location, messagesServices, dbMessage,
         dbMessageSync,
         dbMessageTranslationSync
         ){
@@ -29,8 +29,6 @@
         /* ------------------------------------------ */
         // dbMessageSync.getAllData();
         // dbMessageTranslationSync.getAllData();
-
-
 
 
 

@@ -5,15 +5,15 @@
 
     function favoriteNewDetailController($scope, $http, $stateParams, $location, newDetailServices, dbNew, dbFavoriteNew, dbNewTranslation, dbFavoriteNewTranslation){
         var main = $('#main'),
-        loading = $('.loading-js');     
+        loading = $('.loading-js');
         var id = $stateParams.id;
-        
-        
-        /* ------------------------------------------ */    
+
+
+        /* ------------------------------------------ */
         // isOffline
-        /* ------------------------------------------ */  
+        /* ------------------------------------------ */
         var result = [];
-        
+
         dbFavoriteNew.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
 
             $scope.result = response[0];
@@ -22,31 +22,31 @@
 
 
             shareButtons(response);
-        }); 
+        });
 
 
 
         return;
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // isOnline
-        /* ------------------------------------------ */ 
+        /* ------------------------------------------ */
         var promesa = newDetailServices.getData(id, $location);
         var result = [];
         promesa.then(function (response) {
-            
+
             var output = '',
                     title = response[0]['title'],
                     content = response[0]['content'],
                     url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
 
-            result = response[0];                
+            result = response[0];
 
             TweenLite.to(loading, .45, {opacity: 0});
-            TweenLite.to(main, 1, {opacity: 1});                
+            TweenLite.to(main, 1, {opacity: 1});
 
 
             shareButtons(response);
-            
+
 
         }, function (error) {
             // alert("Error: " + error);
@@ -71,8 +71,8 @@
                 };
                 window.socialmessage.send(message);
             });
-            
-            
+
+
 
             /************************************
             *****    MAIL SHARE   **************
@@ -80,14 +80,14 @@
             var btn = $('.mail-share-js');
             btn.on('click', function(e){
                 e.preventDefault();
-                
+
                 var message = {
                     subject: title,
                     text: content,
                     activityTypes: ["Mail"]
                 };
                 window.socialmessage.send(message);
-            }); 
+            });
 
 
 
@@ -122,10 +122,10 @@
 
                     dbFavoriteNew.deleteById(id);
                     dbFavoriteNewTranslation.deleteById(id);
-                    
+
                 }
 
-                
+
             });
         }
     }

@@ -252,6 +252,7 @@ input[type="email"] {
   padding: 0 15px;
 }
 
+
 /* GENERALES */
 
 html,
@@ -523,6 +524,16 @@ body.gray {
   left: 0;
   top: 0;
   color: #000;
+}
+
+.small-date {
+  background-color: #909aa3;
+  color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  line-height: 1em;
+  margin-bottom: 10px;
+  padding: 4px 12px 3px;
 }
 
 
@@ -810,7 +821,57 @@ textarea:focus {
 
 .list-item a {
   display: block;
-  padding: 20px;
+  padding: 15px 20px 15px 85px;
+  position: relative;
+}
+
+.list-item .date {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70px;
+  font-family: 'robotomedium';
+  text-align: center;
+  font-size: 1.3em;
+}
+
+@media only screen and (max-width: 560px) {
+  .list-item a {
+    padding-left: 60px;
+  }
+  .list-item .date {
+    font-size: 1em;
+    width: 50px;
+    line-height: 1.3em;
+  }
+}
+
+.list-item .date .month {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.list-item .date .month {
+  display: block;
+  background-color: #909aa3;
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+  font-family: 'robotobold';
+}
+
+.list-item .date .year {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 560px) {
+  .list-item .date .year {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
 .list-item p {
@@ -834,7 +895,7 @@ textarea:focus {
   display: block;
   position: relative;
   border-bottom: 1px solid #dcdcdc;
-  padding: 20px 105px 20px 85px;
+  padding: 15px 105px 15px 85px;
   min-height: 105px;
 }
 

@@ -13,7 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT OR REPLACE INTO message (id, date_created, year, date, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date, e.lastModified, e.deleted]);
+                DB.query("INSERT OR REPLACE INTO message (id, date_created, year, date, date_day, date_mon, date_yea, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date, e.date_day, e.date_mon, e.date_yea, e.lastModified, e.deleted]);
 
             }
             if (typeof callback === "function") {
@@ -45,7 +45,7 @@
         self.getByLanguage = function(lang) {
             var query = 'SELECT m.*, mt.title, mt.excerpt' +
                 ' FROM message m' +
-                ' INNER JOIN message_translation mt ON m.id = mt.message_id' + 
+                ' INNER JOIN message_translation mt ON m.id = mt.message_id' +
                 ' WHERE mt.language_code = ? AND m.deleted=0 ORDER BY m.id ASC';
             return DB.query(query, [lang])
             .then(function(result){
@@ -78,7 +78,7 @@
             var query = "SELECT m.*, mt.title, mt.excerpt" +
                 " FROM message m" +
                 " INNER JOIN message_translation mt ON m.id = mt.message_id" +
-                " WHERE year LIKE ? AND mt.language_code = ? AND m.deleted=0 " + 
+                " WHERE year LIKE ? AND mt.language_code = ? AND m.deleted=0 " +
                 " LIMIT ? OFFSET ? ";
             return DB.query(query, ["%" + year + "%", lang, limit, offset])
             .then(function(result){
@@ -93,4 +93,4 @@
         return self;
     };
 
-})();    
+})();

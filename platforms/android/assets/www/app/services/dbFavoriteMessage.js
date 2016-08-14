@@ -9,11 +9,10 @@
 
         self.insert = function(items) {
             var l = items.length;
-            console.log(items);
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT INTO favorite_message (id, date_created, year, date_original, date) VALUES (?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date_original, e.date]);
+                DB.query("INSERT INTO favorite_message (id, date_created, year, date_original, date, date_day, date_mon, date_yea) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.year, e.date_original, e.date, e.date_day, e.date_mon, e.date_yea]);
                 console.log(e.id + ' inserted!')
             }
         };
@@ -74,9 +73,9 @@
             return DB.query(query, [id])
             .then(function(result){
                 return DB.fetchAll(result);
-            });   
+            });
         }
-        
+
 
         self.dropTable = function() {
             return DB.query('DROP TABLE favorite_message');
@@ -85,4 +84,4 @@
         return self;
     };
 
-})();    
+})();
