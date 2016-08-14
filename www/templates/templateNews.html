@@ -2,10 +2,10 @@
 <div class="display-table">
             <div class="display-table-row">
                 <div class="display-table-cell">
-                    
+
                     <header id="header">
                         <div class="container">
-                            
+
                             <h1 ng-show="language == 'es'">Noticias</h1>
                             <h1 ng-show="language == 'en'">News<h1>
                             <h1 ng-show="language == 'it'">Notizie</h1>
@@ -31,28 +31,24 @@
                 <div class="display-table-cell vertical_top">
                     <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
                     <main id="main">
-                        
-                            <div class="listnews news-js">
-                                
-                                <div class="listnews-item" ng-repeat="item in result">
-                                    <a ui-sref="new({id:item.id})">
-                                        <span class="date">
-                                            <span class="month">
-                                                10 <br>
-                                                Set
-                                            </span>
-                                            <span class="year">
-                                                2014
-                                            </span>
-                                        </span>        
-                                        <h3 ng-bind="item.title"></h3>
-                                        <p ng-bind="item.excerpt"></p>
-                                        <img src="assets/images/noticia_thumb_1.jpg" class="img" />
-                                    </a>
-                                </div>
 
+                            <div class="listnews news-js">
+
+                                <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
+                                     <span class="date">
+                                         <span class="month">
+                                             10 <br>
+                                             Set
+                                         </span>
+                                         <span class="year">
+                                             2014
+                                         </span>
+                                     </span>
+                                     <h3 ng-bind="item.title"></h3>
+                                     <p ng-bind="item.excerpt"></p>
+                                     <img src="assets/images/noticia_thumb_1.jpg" class="img" />
+                                </a>
                             </div>
-                        
                     </main>
                 </div>
             </div>
