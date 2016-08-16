@@ -654,6 +654,17 @@ textarea:focus {
   color: #fff;
 }
 
+.padding-0 {
+  padding: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.pr-0 {
+  padding-right: 0 !important;
+}
 
 /*HEADER TAB*/
 
@@ -815,13 +826,17 @@ textarea:focus {
 
 .list {}
 
+.listmessages {
+
+}
+
 .list-item {
   border-bottom: 1px solid #dcdcdc;
 }
 
 .list-item a {
   display: block;
-  padding: 15px 20px 15px 85px;
+  padding: 15px 20px;
   position: relative;
 }
 
@@ -836,8 +851,12 @@ textarea:focus {
   font-size: 1.3em;
 }
 
+.listmessages .list-item a {
+  padding: 15px 20px 15px 85px;
+}
+
 @media only screen and (max-width: 560px) {
-  .list-item a {
+  .listmessages .list-item a {
     padding-left: 60px;
   }
   .list-item .date {

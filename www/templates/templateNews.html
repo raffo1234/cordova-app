@@ -37,12 +37,10 @@
                                 <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
                                      <span class="date">
                                          <span class="month">
-                                             10 <br>
-                                             Set
+                                             <date ng-bind="item.date_day"></date> <br>
+                                             <date ng-bind="item.date_mon"></date>
                                          </span>
-                                         <span class="year">
-                                             2014
-                                         </span>
+                                         <span class="year" ng-bind="item.date_yea"></span>
                                      </span>
                                      <h3 ng-bind="item.title"></h3>
                                      <p ng-bind="item.excerpt"></p>
