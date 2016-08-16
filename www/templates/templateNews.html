@@ -30,7 +30,7 @@
             <div class="display-table-row wrapper-content">
                 <div class="display-table-cell vertical_top">
                     <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
-                    <main id="main">
+                    <main id="main" check-scroll-end get-more-items="getMoreItems(page)" page="{{ page }}" >
 
                             <div class="listnews news-js">
 
@@ -48,6 +48,11 @@
                                      <p ng-bind="item.excerpt"></p>
                                      <img src="assets/images/noticia_thumb_1.jpg" class="img" />
                                 </a>
+                                <div class="spinner" ng-class="{active: isLoading == 'true'}">
+                                   <div class="bounce1"></div>
+                                   <div class="bounce2"></div>
+                                   <div class="bounce3"></div>
+                                 </div>
                             </div>
                     </main>
                 </div>
