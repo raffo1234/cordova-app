@@ -62,6 +62,10 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'},
                     {name: 'image', type: 'CHAR(200)'},
                     {name: 'lastModified', type: 'VARCHAR(50)'},
                     {name: 'deleted', type: 'VARCHAR(5)'}
@@ -203,7 +207,13 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'image', type: 'CHAR(150)'}
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'},
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {

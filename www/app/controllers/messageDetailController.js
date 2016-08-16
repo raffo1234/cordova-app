@@ -29,9 +29,9 @@
             url: API_URL.url + "message/" + localStorage.getItem('lang') + '/' + id,
 
         }).then(function(response){
-            // console.log(response);
-            var response = response.data;
 
+            var response = response.data;
+            // console.log(response);
             $scope.result = response[0];
             message_id = response[0].message_id;
             // console.log(response[0].message_id);
