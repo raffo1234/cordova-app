@@ -13,7 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT INTO favorite_new_translation (id, new_id, language_code, title, excerpt, content) VALUES (?, ?, ?, ?, ?, ?)", [e.id, e.new_id, e.language_code, e.title, e.excerpt, e.content])
+                DB.query("INSERT INTO favorite_new_translation (id, new_id, language_code, title, excerpt, content, urlweb) VALUES (?, ?, ?, ?, ?, ?, ?)", [e.id, e.new_id, e.language_code, e.title, e.excerpt, e.content, e.urlweb])
             }
         };
 

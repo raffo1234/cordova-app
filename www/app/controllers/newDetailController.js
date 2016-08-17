@@ -27,7 +27,7 @@
             var output = '',
                 title = response[0]['title'],
                 content = response[0]['content'],
-                url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                url = response[0]['urlweb'];
 
             $scope.result = response[0];
             new_id = response[0].new_id;
@@ -64,7 +64,7 @@
 
             var title = response[0]['title'],
                 content = response[0]['content'],
-                url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                url = response[0]['urlweb'];
 
             /************************************
              *****    SOCIAL SHARE   **************

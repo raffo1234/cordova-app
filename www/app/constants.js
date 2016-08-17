@@ -225,7 +225,8 @@
                     {name: 'language_code', type: 'CHAR(2)'},
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'urlweb', type: 'TEXT'}
                 ]
             }
 

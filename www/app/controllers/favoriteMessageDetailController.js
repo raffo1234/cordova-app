@@ -33,7 +33,7 @@
             var title = response[0]['date'] + ' - ' + response[0]['title'],
                 date = response[0]['date'],
                 content = response[0]['content'],
-                url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                url = response[0]['urlweb'];
             /************************************
              *****    SOCIAL SHARE   **************
              ************************************/
