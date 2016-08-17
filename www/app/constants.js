@@ -207,6 +207,7 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
+                    {name: 'date_original', type: 'CHAR(10)'},
                     {name: 'date', type: 'CHAR(10)'},
                     {name: 'date_day', type: 'CHAR(2)'},
                     {name: 'date_mon', type: 'CHAR(3)'},
