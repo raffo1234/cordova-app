@@ -13,8 +13,7 @@
             var e;
             for (var i = 0; i < l; i++) {
                 e = items[i];
-                DB.query("INSERT OR REPLACE INTO new (id, date_created, date, date_day, date_mon, date_yea, image, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.date, e.date_day, e.date_mon, e.date_yea, e.image, e.lastModified, e.deleted]);
-                console.log(e.id + ' inserted!')
+                DB.query("INSERT OR REPLACE INTO favorite_new (id, date_created, date_original, date, date_day, date_mon, date_yea, image, lastModified, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [e.id, e.date_created, e.date_original, e.date, e.date_day, e.date_mon, e.date_yea, e.image, e.lastModified, e.deleted]);
             }
         };
 
@@ -48,7 +47,7 @@
             var query = 'SELECT n.*, nt.title, nt.excerpt' +
                 ' FROM favorite_new n' +
                 ' INNER JOIN favorite_new_translation nt ON n.id = nt.new_id' +
-                ' WHERE nt.language_code = ?';
+                ' WHERE nt.language_code = ? ORDER BY n.date_original DESC ';
             return DB.query(query, [lang])
             .then(function(result){
                 return DB.fetchAll(result);
