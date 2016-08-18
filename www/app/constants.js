@@ -3,10 +3,18 @@
 
     angular.module('igospa')
     .constant('API_URL', {
-        url: 'http://igospa.dhdinc.info/api/v1/'
+         // production
+        // url: 'http://igospa.dhdinc.info/api/v1/'
+
+         // local
+        url: 'http://localhost:8080/igospa/api/v1/'
     })
     .constant('ADMIN_URL', {
-        url: 'http://igospa.dhdinc.info/admin/'
+      // production
+      // url: 'http://igospa.dhdinc.info/admin/'
+
+      // local
+      url: 'http://localhost:8080/igospa/admin/'
     })
     .constant('LIMIT', '10')
     .constant('ITEMS_BY_PAGE', '10')

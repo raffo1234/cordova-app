@@ -44,7 +44,7 @@
                                      </span>
                                      <h3 ng-bind="item.title"></h3>
                                      <p ng-bind="item.excerpt"></p>
-                                     <img src="assets/images/noticia_thumb_1.jpg" class="img" />
+                                     <img ng-src="{{item.image}}" class="img" />
                                 </a>
                                 <div class="spinner" ng-class="{active: isLoading == 'true'}">
                                    <div class="bounce1"></div>

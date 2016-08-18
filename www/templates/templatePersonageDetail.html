@@ -1,7 +1,6 @@
 <div class="display-table">
     <div class="display-table-row">
         <div class="display-table-cell">
-            
             <header id="header">
                 <div class="container">
                     <h1 ng-show="language == 'es'">Personas</h1>
@@ -30,6 +29,7 @@
             <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
             <main id="main">
                 <div class="people">
+                  {{ result[0] }}
                     <div class="img" ng-repeat="img in result[0].images_arr|limitTo:1">
                         <img ng-src="{{img.image}}" class="img">
                     </div>
