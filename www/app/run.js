@@ -87,8 +87,8 @@
             // dbNewTranslationSync.getAllData();
 
             // History
-            dbHistorySync.getAllData();
-            dbHistoryTranslationSync.getAllData();
+            // dbHistorySync.getAllData();
+            // dbHistoryTranslationSync.getAllData();
 
             // People
             // dbPeopleSync.getAllData();

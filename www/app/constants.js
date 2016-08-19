@@ -7,14 +7,14 @@
         // url: 'http://igospa.dhdinc.info/api/v1/'
 
          // local
-        url: 'http://localhost:8080/igospa/api/v1/'
+        url: 'http://localhost/igospa/api/v1/'
     })
     .constant('ADMIN_URL', {
       // production
       // url: 'http://igospa.dhdinc.info/admin/'
 
       // local
-      url: 'http://localhost:8080/igospa/admin/'
+      url: 'http://localhost/igospa/admin/'
     })
     .constant('LIMIT', '10')
     .constant('ITEMS_BY_PAGE', '10')
