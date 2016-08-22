@@ -3,10 +3,18 @@
 
     angular.module('igospa')
     .constant('API_URL', {
+         // production
         url: 'http://igospa.dhdinc.info/api/v1/'
+
+         // local
+        // url: 'http://localhost:888/igospa/api/v1/'
     })
     .constant('ADMIN_URL', {
-        url: 'http://igospa.dhdinc.info/admin/'
+      // production
+      // url: 'http://igospa.dhdinc.info/admin/'
+
+      // local
+      url: 'http://localhost:888/igospa/admin/'
     })
     .constant('LIMIT', '10')
     .constant('ITEMS_BY_PAGE', '10')
@@ -51,6 +59,7 @@
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
                     {name: 'content', type: 'TEXT'},
+                    {name: 'urlweb', type: 'TEXT'},
                     {name: 'lastModified', type: 'VARCHAR(50)'},
                     {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
@@ -61,6 +70,10 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'},
                     {name: 'image', type: 'CHAR(200)'},
                     {name: 'lastModified', type: 'VARCHAR(50)'},
                     {name: 'deleted', type: 'VARCHAR(5)'}
@@ -192,7 +205,8 @@
                     {name: 'language_code', type: 'CHAR(2)'},
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'urlweb', type: 'TEXT'}
                 ]
             },
 
@@ -201,7 +215,14 @@
                 columns: [
                     {name: 'id', type: 'INTEGER primary key'},
                     {name: 'date_created', type: 'DATETIME'},
-                    {name: 'image', type: 'CHAR(150)'}
+                    {name: 'date_original', type: 'CHAR(10)'},
+                    {name: 'date', type: 'CHAR(10)'},
+                    {name: 'date_day', type: 'CHAR(2)'},
+                    {name: 'date_mon', type: 'CHAR(3)'},
+                    {name: 'date_yea', type: 'CHAR(4)'},
+                    {name: 'image', type: 'CHAR(200)'},
+                    {name: 'lastModified', type: 'VARCHAR(50)'},
+                    {name: 'deleted', type: 'VARCHAR(5)'}
                 ]
             },
             {
@@ -212,7 +233,8 @@
                     {name: 'language_code', type: 'CHAR(2)'},
                     {name: 'title', type: 'TEXT'},
                     {name: 'excerpt', type: 'TEXT'},
-                    {name: 'content', type: 'TEXT'}
+                    {name: 'content', type: 'TEXT'},
+                    {name: 'urlweb', type: 'TEXT'}
                 ]
             }
 

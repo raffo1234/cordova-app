@@ -4,10 +4,10 @@
     angular.module('igospa')
     .constant('API_URL', {
          // production
-        // url: 'http://igospa.dhdinc.info/api/v1/'
+        url: 'http://igospa.dhdinc.info/api/v1/'
 
          // local
-        url: 'http://localhost:888/igospa/api/v1/'
+        // url: 'http://localhost:888/igospa/api/v1/'
     })
     .constant('ADMIN_URL', {
       // production

@@ -19,11 +19,12 @@
                         <div class="content gray new-detail-js">
 
                             <div class="carousel-img">
-                                <img src="assets/images/lugar_1.jpg" title="result.title" />
+
+                                <img ng-src="{{result.image_fullpath}}" />
+
                             </div>
                             <h2 ng-bind="result.title"></h2>
                             <div ng-bind-html="result.content"></div>
-
 
                         </div>
                         <br>

@@ -3,9 +3,9 @@
 
     angular.module('igospa.controllers').controller('placesController', placesController);
 
-    function placesController($scope, $state, $http, $rootScope, $location, placesServices, dbPlace, 
-        dbPlaceSync, 
-        dbPlaceImageSync, 
+    function placesController($scope, $state, $http, $rootScope, $location, placesServices, dbPlace,
+        dbPlaceSync,
+        dbPlaceImageSync,
         dbPlaceTranslationSync){
 
         var main = $('.header-carousel-inner-js'),
@@ -53,13 +53,13 @@
         // isOffline
         /* ------------------------------------------ */
 
-        var result = [];
-        dbPlace.getByLanguage(localStorage.getItem('lang')).then(function(response){
-            $scope.result = response;
-            console.log($scope.result);
-            TweenLite.to(loading, .45, {opacity: 0});
-            TweenLite.to(main, 1, {opacity: 1});
-        });
+        // var result = [];
+        // dbPlace.getByLanguage(localStorage.getItem('lang')).then(function(response){
+        //     $scope.result = response;
+        //     console.log($scope.result);
+        //     TweenLite.to(loading, .45, {opacity: 0});
+        //     TweenLite.to(main, 1, {opacity: 1});
+        // });
     }
 
     // SERVICES PLACES

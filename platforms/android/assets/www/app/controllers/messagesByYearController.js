@@ -9,7 +9,6 @@
         ){
 
         var self = this;
-        var itemByPage = 10;
 
         // MESSAGES
         var result = [];
@@ -29,7 +28,6 @@
         /* ------------------------------------------ */
         // dbMessageSync.getAllData();
         // dbMessageTranslationSync.getAllData();
-
 
 
 

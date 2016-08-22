@@ -7,15 +7,15 @@
     <a ui-sref="favorite_message({id:item.id})">
         <span class="date">
             <span class="month">
-               10 <br>
-               Set
+               <date ng-bind="item.date_day"></date> <br>
+               <date ng-bind="item.date_mon"></date>
             </span>
-        <span class="year">
-               2014
+            <span class="year">
+               <date ng-bind="item.date_yea"></date>
             </span>
-        </span>
+         </span>
         <h3 ng-bind="item.title"></h3>
-        <small ng-bind="item.date"></small>
+        <!-- <small ng-bind="item.date"></small> -->
         <p ng-bind="item.excerpt"></p>
     </a>
 </div>

@@ -1,7 +1,6 @@
 <div class="display-table">
     <div class="display-table-row">
         <div class="display-table-cell">
-            
             <header id="header">
                 <div class="container">
 <h1 ng-show="language == 'es'">Historia</h1>
@@ -29,10 +28,8 @@
         <div class="display-table-cell vertical_top">
             <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
             <main id="main">
-                    
-                                
                     <div class="list histories-js">
-                        
+
                         <div class="list-item" ng-repeat="item in result">
                             <a ui-sref="history({id:item.id})">
                                 <h3 ng-bind="item.title"></h3>
