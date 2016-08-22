@@ -53,7 +53,8 @@
 
       promesa.then(function(response) {
         $.map(response, function(n, i) {
-          $scope.result.push(n);
+            $scope.result.push(n);
+            return n['image_fullpath'] = API_URL.url + 'uploads/news/' + n['image'];
         });
         $scope.isLoading = 'false';
         TweenLite.to(loading, .45, { opacity: 0 });

@@ -29,8 +29,8 @@
                 content = response[0]['content'],
                 url = response[0]['urlweb'];
 
+            response[0].image_fullpath = API_URL.url + 'uploads/news/' + response[0].image;
             $scope.result = response[0];
-            new_id = response[0].new_id;
 
             TweenLite.to(loading, .45, { opacity: 0 });
             TweenLite.to(main, 1, { opacity: 1 });
