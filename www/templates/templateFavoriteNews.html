@@ -12,15 +12,15 @@
                     <div class="header-tab">
                         <a href="#/news" class="btn ">
                             <i class="icon-newspaper"></i><br>
-                            <span ng-show="language == 'es'">Todos</span>
+                            <span ng-show="language == 'es'">Todas</span>
                     <span ng-show="language == 'en'">All</span>
-                    <span ng-show="language == 'it'">Tutto</span>
+                    <span ng-show="language == 'it'">Tutte</span>
                         </a>
                         <a href="#/favorite_news" class="btn active">
                             <i class="icon-preferidos"></i><br>
-                            <span ng-show="language == 'es'">Favoritos</span>
+                            <span ng-show="language == 'es'">Favoritas</span>
                     <span ng-show="language == 'en'">Favorites</span>
-                    <span ng-show="language == 'it'">Preferiti</span>
+                    <span ng-show="language == 'it'">Preferite</span>
                         </a>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                                 <div ng-show="result.length == 0" class="wrapper-alert">
                                     <br>
                                     <div ng-show="language == 'es'" class="alert alert-info">No hay noticias <strong>preferidas</strong>.</div>
-    <div ng-show="language == 'en'" class="alert alert-info">No news <strong>favorites</strong>.</div>
-    <div ng-show="language == 'it'" class="alert alert-info">Nessun notizie <strong>preferiti</strong>.</div>
+    <div ng-show="language == 'en'" class="alert alert-info">No <strong>favorite</strong> news.</div>
+    <div ng-show="language == 'it'" class="alert alert-info">Nessuna notizia <strong>preferita</strong>.</div>
                                 </div>
                                 <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
                                      <span class="date">

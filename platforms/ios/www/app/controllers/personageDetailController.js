@@ -26,7 +26,7 @@
 
         var promesa = personageDetailServices.getData(id, $location);
         promesa.then(function (response) {
-            console.log(response);
+            // console.log(response);
             $scope.result = response;
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});

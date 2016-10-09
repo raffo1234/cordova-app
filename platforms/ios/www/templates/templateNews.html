@@ -14,15 +14,15 @@
                     <div class="header-tab">
                         <a href="#/news" class="btn active">
                             <i class="icon-newspaper"></i><br>
-                            <span ng-show="language == 'es'">Todos</span>
+                            <span ng-show="language == 'es'">Todas</span>
                     <span ng-show="language == 'en'">All</span>
-                    <span ng-show="language == 'it'">Tutto</span>
+                    <span ng-show="language == 'it'">Tutte</span>
                         </a>
                         <a href="#/favorite_news" class="btn">
                             <i class="icon-preferidos"></i><br>
-                            <span ng-show="language == 'es'">Favoritos</span>
+                            <span ng-show="language == 'es'">Favoritas</span>
                     <span ng-show="language == 'en'">Favorites</span>
-                    <span ng-show="language == 'it'">Preferiti</span>
+                    <span ng-show="language == 'it'">Preferite</span>
                         </a>
                     </div>
                 </div>
@@ -30,25 +30,28 @@
             <div class="display-table-row wrapper-content">
                 <div class="display-table-cell vertical_top">
                     <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="42" />
-                    <main id="main">
+                    <main id="main" check-scroll-end get-more-items="getMoreItems(page)" page="{{ page }}" >
 
-                            <div class="listnews news-js">
+                         <div class="listnews news-js">
 
-                                <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
-                                     <span class="date">
-                                         <span class="month">
-                                             10 <br>
-                                             Set
-                                         </span>
-                                         <span class="year">
-                                             2014
-                                         </span>
-                                     </span>
-                                     <h3 ng-bind="item.title"></h3>
-                                     <p ng-bind="item.excerpt"></p>
-                                     <img src="assets/images/noticia_thumb_1.jpg" class="img" />
-                                </a>
-                            </div>
+                             <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
+                                  <span class="date">
+                                      <span class="month">
+                                          <date ng-bind="item.date_day"></date> <br>
+                                          <date ng-bind="item.date_mon"></date>
+                                      </span>
+                                      <span class="year" ng-bind="item.date_yea"></span>
+                                  </span>
+                                  <h3 ng-bind="item.title"></h3>
+                                  <p ng-bind="item.excerpt"></p>
+                                  <img ng-src="{{item.image_fullpath}}" class="img" />
+                             </a>
+                             <div class="spinner" ng-class="{active: isLoading == 'true'}">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                              </div>
+                         </div>
                     </main>
                 </div>
             </div>

@@ -37,7 +37,7 @@
             var output = '',
                     title = response[0]['title'],
                     content = response[0]['content'],
-                    url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                    url = response[0]['urlweb'];
 
             result = response[0];
 
@@ -56,7 +56,7 @@
         function shareButtons(response){
             var title = response[0]['title'],
                 content = response[0]['content'],
-                url = "http://manya.pe/detalle_blog.php#!/blog/politicas-y-terminos-en-mi-web/33";
+                url = response[0]['urlweb'];
 
             /************************************
             *****    SOCIAL SHARE   **************
@@ -71,7 +71,6 @@
                 };
                 window.socialmessage.send(message);
             });
-
 
 
             /************************************

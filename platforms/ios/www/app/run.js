@@ -2,29 +2,29 @@
     'use strict';
 
     angular.module('igospa')
-    .run(['$rootScope', '$state', '$stateParams', 'DB', 'dbLanguage', 
-        'dbMessage', 
-        'dbMessageSync', 
-        'dbMessageTranslation', 
-        'dbMessageTranslationSync', 
-        'dbNew', 
-        'dbNewSync', 
-        'dbNewTranslation', 
-        'dbNewTranslationSync', 
-        'dbHistory', 
-        'dbHistorySync', 
-        'dbHistoryTranslation', 
-        'dbHistoryTranslationSync', 
-        'dbPeople', 
-        'dbPeopleSync', 
-        'dbPeopleTranslation', 
-        'dbPeopleTranslationSync', 
-        'dbPlace', 
-        'dbPlaceSync', 
+    .run(['$rootScope', '$state', '$stateParams', 'DB', 'dbLanguage',
+        'dbMessage',
+        'dbMessageSync',
+        'dbMessageTranslation',
+        'dbMessageTranslationSync',
+        'dbNew',
+        'dbNewSync',
+        'dbNewTranslation',
+        'dbNewTranslationSync',
+        'dbHistory',
+        'dbHistorySync',
+        'dbHistoryTranslation',
+        'dbHistoryTranslationSync',
+        'dbPeople',
+        'dbPeopleSync',
+        'dbPeopleTranslation',
+        'dbPeopleTranslationSync',
+        'dbPlace',
+        'dbPlaceSync',
         'dbPlaceImage',
         'dbPlaceImageSync',
-        'dbPlaceTranslation', 
-        'dbPlaceTranslationSync', 
+        'dbPlaceTranslation',
+        'dbPlaceTranslationSync',
         function ($rootScope, $state, $stateParams, DB, dbLanguage,
             dbMessage,
             dbMessageSync,
@@ -83,12 +83,12 @@
             // dbMessageTranslationSync.getAllData();
 
             // News
-            dbNewSync.getAllData();
-            dbNewTranslationSync.getAllData();
+            // dbNewSync.getAllData();
+            // dbNewTranslationSync.getAllData();
 
             // History
-            dbHistorySync.getAllData();
-            dbHistoryTranslationSync.getAllData();
+            // dbHistorySync.getAllData();
+            // dbHistoryTranslationSync.getAllData();
 
             // People
             // dbPeopleSync.getAllData();
@@ -109,6 +109,6 @@
       ]
     );
 
-    
+
 
 })();

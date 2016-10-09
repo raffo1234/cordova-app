@@ -4,57 +4,57 @@
     angular.module('igospa.controllers').controller('historiesController', historiesController);
 
     function historiesController($scope, $http, $stateParams, $location, historiesServices, dbHistory,
-        dbHistorySync, 
+        dbHistorySync,
         dbHistoryTranslationSync){
 
         var main = $('#main'),
         loading = $('.loading-js');
-        
 
-        /* ------------------------------------------ */    
+
+        /* ------------------------------------------ */
         // populate
-        /* ------------------------------------------ */    
-        dbHistorySync.getAllData();    
-        dbHistoryTranslationSync.getAllData(); 
+        /* ------------------------------------------ */
+        // dbHistorySync.getAllData();
+        // dbHistoryTranslationSync.getAllData();
 
 
 
 
 
-        /* ------------------------------------------ */    
+        /* ------------------------------------------ */
         // show language
-        /* ------------------------------------------ */            
+        /* ------------------------------------------ */
         $scope.language = localStorage.getItem('lang');
 
 
 
 
+        /* ------------------------------------------ */
+        // isOnline
+        /* ------------------------------------------ */
+        var promesa = historiesServices.getData($location);
+        var result = [];
+        promesa.then(function (response) {
 
-        /* ------------------------------------------ */    
+            $scope.result = response;
+            TweenLite.to(loading, .45, {opacity: 0});
+            TweenLite.to(main, 1, {opacity: 1});
+
+        }, function (error) {
+            // alert("Error: " + error);
+        });
+
+
+
+        /* ------------------------------------------ */
         // isOffline
         /* ------------------------------------------ */
+        return false;
         var result = [];
         dbHistory.getByLanguage(localStorage.getItem('lang')).then(function(response){
             $scope.result = response;
             TweenLite.to(loading, .45, {opacity: 0});
-            TweenLite.to(main, 1, {opacity: 1}); 
-        });
-
-
-        /* ------------------------------------------ */    
-        // isOnline
-        /* ------------------------------------------ */
-        return;
-        var promesa = historiesServices.getData($location);
-        var result = [];
-        promesa.then(function (response) {
-            
-            $scope.result = response;
-            TweenLite.to(loading, .45, {opacity: 0});
-            TweenLite.to(main, 1, {opacity: 1});                
-
-        }, function (error) {
-            // alert("Error: " + error);
+            TweenLite.to(main, 1, {opacity: 1});
         });
     }
 
