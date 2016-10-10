@@ -8,6 +8,17 @@
     <feature name="SocialMessage">
         <param name="android-package" value="uk.co.ilee.socialmessage.SocialMessage" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
     <allow-intent href="market:*" />
     <name>Igospa</name>
     <description>

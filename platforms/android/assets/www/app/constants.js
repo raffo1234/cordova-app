@@ -11,10 +11,10 @@
     })
     .constant('ADMIN_URL', {
       // production
-      // url: 'http://igospa.dhdinc.info/admin/'
+      url: 'http://igospa.dhdinc.info/admin/'
 
       // local
-      url: 'http://localhost:888/igospa/admin/'
+      // url: 'http://localhost:888/igospa/admin/'
     })
     .constant('LIMIT', '10')
     .constant('ITEMS_BY_PAGE', '10')
