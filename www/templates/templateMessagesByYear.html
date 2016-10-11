@@ -1,5 +1,5 @@
 <div id="message-{{id}}" class="list-item" ng-repeat="item in result | limitTo: limitTotal track by item.id">
-   <a ui-sref="message({id: item.id})">
+   <a ui-sref="message({lang: language, id: item.id})">
       <span class="date">
          <span class="month">
             <date ng-bind="item.date_day"></date> <br>

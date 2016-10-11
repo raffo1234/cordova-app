@@ -1,4 +1,4 @@
-<div class="display-table" set-current-language>
+<div class="display-table">
     <div class="display-table-row wrapper-content">
         <div class="display-table-cell vertical_top">
             <main id="main" class="wrapper-main">
@@ -7,19 +7,19 @@
                     <div class="intro intro-js align_center" style="background: url('assets/images/background.png') 100% 50%; background-size: cover;">
                         <div class="helper"></div><!--
                         --><div class="logo-languages display-inline">
-                            <img src="assets/images/logo.png" width="250" class="logo logo-js" /> 
+                            <img src="assets/images/logo.png" width="250" class="logo logo-js" />
                             <br />
-                            
+
                             <ul class="intro-languages display-inline">
-                                <li><a ui-sref="messages.year" class="btn-language-js" data-lang="es" ng-click="showLanguage($event)">
+                                <li><a ui-sref="messages.year({lang: 'es'})" class="btn-language-js" data-lang="es" ng-click="showLanguage($event)">
                                     <img src="assets/icons/flag_es.jpg" width="60" /></a>
                                 </li>
                                 <li>
-                                    <a ui-sref="messages.year" class="btn-language-js" data-lang="en" ng-click="showLanguage($event)">
+                                    <a ui-sref="messages.year({lang: 'en'})" class="btn-language-js" data-lang="en" ng-click="showLanguage($event)">
                                     <img src="assets/icons/flag_en.jpg" width="60" /></a>
                                 </li>
                                 <li>
-                                    <a ui-sref="messages.year" class="btn-language-js" data-lang="it" ng-click="showLanguage($event)">
+                                    <a ui-sref="messages.year({lang: 'it'})" class="btn-language-js" data-lang="it" ng-click="showLanguage($event)">
                                         <img src="assets/icons/flag_it.jpg" width="60" /></a>
                                 </li>
                             </ul>

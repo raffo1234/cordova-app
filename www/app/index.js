@@ -29,7 +29,7 @@
 	          controller: 'messagesController'
 	        })
 	        .state('messages.year', {
-	          url: '/year/:year?offset&limit',
+	          url: '/year/:lang/:year?offset&limit',
 	          params: {
 				year: {
 					value: null,
@@ -48,7 +48,7 @@
 	          controller: 'messagesByYearController'
 	        })
 	        .state('message', {
-	          url: '/message/:id',
+	          url: '/message/:lang/:id',
 	          templateUrl: 'templates/templateMessagesDetail.html',
 	          controller: 'messageDetailController'
 	        })

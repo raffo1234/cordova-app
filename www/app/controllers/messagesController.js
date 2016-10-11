@@ -25,7 +25,7 @@
     /* ------------------------------------------ */
     // show language
     /* ------------------------------------------ */
-    $scope.language = localStorage.getItem('lang');
+    $scope.language = $stateParams.lang || 'es';
 
 
 
@@ -114,10 +114,11 @@
 
 
   // MESSAGES SERVICES
-  angular.module('igospa.services').service("messagesServices", ["$http", "$q", "API_URL", function($http, $q, API_URL) {
+  angular.module('igospa.services').service("messagesServices", ["$http", "$stateParams", "$q", "API_URL", function($http, $stateParams, $q, API_URL) {
     this.getData = function(year, offset, limit) {
       var defer = $q.defer();
-      $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + "?sort=-date_original&year=" + year + "&offset=" + offset + "&limit=" + limit)
+      var lang = $stateParams.lang || 'es';
+      $http.get(API_URL.url + "messages/" + lang + "?sort=-date_original&year=" + year + "&offset=" + offset + "&limit=" + limit)
         .success(function(data) {
           defer.resolve(data);
         })
