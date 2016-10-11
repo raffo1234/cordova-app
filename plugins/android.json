@@ -7,13 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.igospa.app"
-        },
-        "cordova-plugin-social-message": {
-            "PACKAGE_NAME": "com.igospa.app"
-        },
-        "cordova-plugin-network-information": {
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.igospa.app"
         },
         "cordova-plugin-file": {
@@ -21,11 +15,16 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.igospa.app"
-        }
-    },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.igospa.app"
+        },
+        "cordova-plugin-social-message": {
+            "PACKAGE_NAME": "com.igospa.app"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.igospa.app"
         }
-    }
+    },
+    "dependent_plugins": {}
 }

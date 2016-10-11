@@ -125,14 +125,22 @@
 
                     promiseNew.then(function(response) {
                         $scope.isLoading = false;
+                        response.image_fullpath = API_URL.url + 'uploads/news/' + response.image;
+                        // console.log(response);
 
                         var neu = [response];
+                        // console.log(neu);
+
+
                         dbFavoriteNew.insert(neu);
 
                         // DOWNLOAD IMAGE
                         var url_image = API_URL.url + 'uploads/news/' + image;
                         var name_image = image.replace(/\.[^/.]+$/, "");
-                        DownloadFile(url_image, 'news', name_image);
+
+
+
+                        // DownloadFile(url_image, 'news', name_image);
 
                     }, function(error) {
                         $scope.isLoading = false;

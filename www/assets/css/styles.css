@@ -848,7 +848,6 @@ textarea:focus {
   width: 70px;
   font-family: 'robotomedium';
   text-align: center;
-  font-size: 1.3em;
 }
 
 .listmessages .list-item a {
@@ -876,7 +875,7 @@ textarea:focus {
   background-color: #909aa3;
   width: 100%;
   color: #fff;
-  padding: 10px;
+  padding: 4px 10px;
   font-family: 'robotobold';
 }
 
