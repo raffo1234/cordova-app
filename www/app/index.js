@@ -24,25 +24,26 @@
 	          controller: 'homeController'
 	        })
 	        .state('messages', {
-	          url: '/messages',
+				 abstract: true,
+	          url: '/messages/:lang',
 	          templateUrl: 'templates/templateMessages.html',
 	          controller: 'messagesController'
 	        })
 	        .state('messages.year', {
 	          url: '/year/:lang/:year?offset&limit',
 	          params: {
-				year: {
+				 year: {
 					value: null,
 					squash: true
-				},
-				offset: {
+				 },
+				 offset: {
 		            value: '0',
 		            squash: true
-		        },
-		        limit: {
+		       },
+		       limit: {
 		            value: '10',
 		            squash: true
-		        }
+		       }
 			  },
 	          templateUrl: 'templates/templateMessagesByYear.html',
 	          controller: 'messagesByYearController'
@@ -58,10 +59,10 @@
 	          controller: 'favoriteMessagesController'
 	        })
 	        .state('favorite_messages.year', {
-	          url: '/year/:year',
+	          url: '/year/:lang/:year',
 	          params: {
-				year: {value: null, squash: true}
-			  },
+					 year: {value: null, squash: true}
+			    },
 	          templateUrl: 'templates/templateFavoriteMessagesByYear.html',
 	          controller: 'favoriteMessagesByYearController'
 	        })
