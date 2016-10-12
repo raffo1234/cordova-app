@@ -53,7 +53,7 @@
 	          controller: 'messageDetailController'
 	        })
 	        .state('favorite_messages', {
-	          url: '/favorite_messages',
+	          url: '/favorite_messages/:lang',
 	          templateUrl: 'templates/templateFavoriteMessages.html',
 	          controller: 'favoriteMessagesController'
 	        })
@@ -66,7 +66,7 @@
 	          controller: 'favoriteMessagesByYearController'
 	        })
 	        .state('favorite_message', {
-	          url: '/favorite_message/:id',
+	          url: '/favorite_message/:lang/:id',
 	          templateUrl: 'templates/templateFavoriteMessagesDetail.html',
 	          controller: 'favoriteMessageDetailController'
 	        })
