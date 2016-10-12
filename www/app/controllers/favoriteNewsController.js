@@ -10,15 +10,22 @@
 
 
         /* ------------------------------------------ */
+        // show language
+        /* ------------------------------------------ */
+        $scope.language = $stateParams.lang || 'es';
+
+
+
+        /* ------------------------------------------ */
         // isOffline
         /* ------------------------------------------ */
         var result = [];
 
-        dbFavoriteNew.getByLanguage(localStorage.getItem('lang')).then(function(response){
+        dbFavoriteNew.getByLanguage($scope.language).then(function(response){
           $.map(response, function(n, i) {
               return n['image_fullpath'] = API_URL.url + 'uploads/news/' + n['image'];
           });
-          console.log("object", response);
+         //  console.log("object", response);
           $scope.result = response;
           TweenLite.to(loading, .45, {opacity: 0});
           TweenLite.to(main, 1, {opacity: 1});
@@ -29,10 +36,6 @@
 
 
 
-        /* ------------------------------------------ */
-        // show language
-        /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
 
 
 

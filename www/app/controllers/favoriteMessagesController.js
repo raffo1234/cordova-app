@@ -23,14 +23,14 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
 
 
         /* ------------------------------------------ */
         // isOffline
         /* ------------------------------------------ */
-        dbFavoriteMessage.getByLanguage(localStorage.getItem('lang')).then(function(response){
+        dbFavoriteMessage.getByLanguage($scope.language).then(function(response){
             var uniqueYearsArr = [];
             var uniqueYears = [];
             // console.log(uniqueYears);
@@ -57,7 +57,7 @@
         // isOnline
         /* ------------------------------------------ */
         return false;
-        $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + '?fields=date_created&sort=-date_created')
+        $http.get(API_URL.url + "messages/" + $scope.language + '?fields=date_created&sort=-date_created')
             .success(function(response){
                 var uniqueYearsArr = [];
                 var uniqueYears = [];
@@ -86,4 +86,3 @@
 
 
 })();
-

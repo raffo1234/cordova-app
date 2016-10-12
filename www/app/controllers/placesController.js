@@ -3,7 +3,7 @@
 
     angular.module('igospa.controllers').controller('placesController', placesController);
 
-    function placesController($scope, $state, $http, $rootScope, $location, placesServices, dbPlace,
+    function placesController($scope, $state, $http, $stateParams, $rootScope, $location, placesServices, dbPlace,
         dbPlaceSync,
         dbPlaceImageSync,
         dbPlaceTranslationSync){
@@ -24,7 +24,7 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
 
 
@@ -63,10 +63,11 @@
     }
 
     // SERVICES PLACES
-    angular.module('igospa.services').service("placesServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+    angular.module('igospa.services').service("placesServices", ["$http", "$stateParams", "$q", "API_URL", function ($http, $stateParams, $q, API_URL) {
         this.getData = function ($location) {
             var defer = $q.defer();
-            $http.get(API_URL.url + "places/" + localStorage.getItem('lang'))
+            var lang = $stateParams.lang;
+            $http.get(API_URL.url + "places/" + lang)
                     .success(function (data) {
                         defer.resolve(data);
                     })
@@ -79,4 +80,3 @@
     }
     ]);
 })();
-

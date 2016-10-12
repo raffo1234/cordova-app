@@ -64,7 +64,7 @@
         // isOffline
         /* ------------------------------------------ */
         var result = [];
-        dbMessage.getByYearLanguage(year, localStorage.getItem('lang')).then(function(response){
+        dbMessage.getByYearLanguage(year, $scope.language).then(function(response){
             $scope.result = response;
 
             TweenLite.to(loading, .45, {opacity: 0});

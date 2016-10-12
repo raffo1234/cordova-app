@@ -12,13 +12,13 @@
                         </div>
                     </header>
                     <div class="header-tab">
-                        <a href="#/news" class="btn active">
+                        <a ui-sref="news({lang: language})" class="btn active">
                             <i class="icon-newspaper"></i><br>
                             <span ng-show="language == 'es'">Todas</span>
                     <span ng-show="language == 'en'">All</span>
                     <span ng-show="language == 'it'">Tutte</span>
                         </a>
-                        <a href="#/favorite_news" class="btn">
+                        <a ui-sref="favorite_news({lang: language})" class="btn">
                             <i class="icon-preferidos"></i><br>
                             <span ng-show="language == 'es'">Favoritas</span>
                     <span ng-show="language == 'en'">Favorites</span>
@@ -34,7 +34,7 @@
 
                          <div class="listnews news-js">
 
-                             <a ui-sref="new({id:item.id})" class="listnews-item" ng-repeat="item in result">
+                             <a ui-sref="new({lang: language, id:item.id})" class="listnews-item" ng-repeat="item in result">
                                   <span class="date">
                                       <span class="month">
                                           <date ng-bind="item.date_day"></date> <br>
@@ -60,22 +60,22 @@
                     <footer id="footer">
                         <ul class="footer-menu">
                             <li>
-	                        <a href="#/messages/year" class="btn ">
+	                        <a ui-sref="messages.year({lang: language})" class="btn ">
 	                            <i class="icon-mensajes"></i>
 	                        </a>
 		                    </li><!--
 		                    --><li>
-		                        <a href="#/news" class="btn active">
+		                        <a ui-sref="news({lang: language})" class="btn active">
 		                            <i class="icon-noticias"></i>
 		                        </a>
 		                    </li><!--
 		                    --><li>
-		                        <a href="#/histories" class="btn ">
+		                        <a ui-sref="histories({lang: language})" class="btn ">
 		                            <i class="icon-historia"></i>
 		                        </a>
 		                    </li><!--
 		                    --><li>
-		                        <a href="#/places/place" class="btn">
+		                        <a ui-sref="places.place({lang: language})" class="btn">
 		                            <i class="icon-lugares"></i>
 		                        </a>
 		                    </li><!--
