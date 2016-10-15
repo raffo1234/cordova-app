@@ -13,7 +13,7 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
 
         /* ------------------------------------------ */
@@ -243,10 +243,12 @@
     }
 
 
-    angular.module('igospa.services').service("newDetailServices", ["$http", "$q", "API_URL", function($http, $q, API_URL) {
+    angular.module('igospa.services').service("newDetailServices", ["$http", "$stateParams", "$q", "API_URL", function($http, $stateParams, $q, API_URL) {
         this.getData = function(id) {
             var defer = $q.defer();
-            $http.get(API_URL.url + "new/" + localStorage.getItem('lang') + '/' + id)
+            var lang = $stateParams.lang || 'es';
+
+            $http.get(API_URL.url + "new/" + lang + '/' + id)
                 .success(function(data) {
                     defer.resolve(data);
                 })

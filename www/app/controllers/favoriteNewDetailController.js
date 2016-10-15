@@ -10,11 +10,17 @@
 
 
         /* ------------------------------------------ */
+        // show language
+        /* ------------------------------------------ */
+        $scope.language = $stateParams.lang || 'es';
+
+
+        /* ------------------------------------------ */
         // isOffline
         /* ------------------------------------------ */
         var result = [];
 
-        dbFavoriteNew.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
+        dbFavoriteNew.getByIdLanguage(id, $scope.language).then(function(response){
 
             $scope.result = response[0];
             TweenLite.to(loading, .45, {opacity: 0});
@@ -23,6 +29,8 @@
 
             shareButtons(response);
         });
+
+
 
 
 
@@ -147,4 +155,3 @@
     ]);
 
 })();
-

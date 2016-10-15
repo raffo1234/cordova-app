@@ -15,10 +15,16 @@
 
 
         /* ------------------------------------------ */
+        // show language
+        /* ------------------------------------------ */
+        $scope.language = $stateParams.lang || 'es';
+
+
+        /* ------------------------------------------ */
         // isOffline
         /* ------------------------------------------ */
         var result = [];
-        dbFavoriteMessage.getByYearLanguage(year, localStorage.getItem('lang')).then(function(response) {
+        dbFavoriteMessage.getByYearLanguage(year, $scope.language).then(function(response) {
             $scope.result = response;
             TweenLite.to(loading, .45, { opacity: 0 });
             TweenLite.to(main, 1, { opacity: 1 });

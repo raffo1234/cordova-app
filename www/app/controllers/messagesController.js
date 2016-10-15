@@ -26,8 +26,7 @@
     // show language
     /* ------------------------------------------ */
     $scope.language = $stateParams.lang || 'es';
-
-
+    
 
 
     /* ------------------------------------------ */
@@ -57,7 +56,7 @@
     // isOnline
     /* ------------------------------------------ */
 
-    $http.get(API_URL.url + "messages/" + localStorage.getItem('lang') + '?fields=year&sort=-date')
+    $http.get(API_URL.url + "messages/" + $scope.language + '?fields=year&sort=-date')
       .success(function(response) {
 
         // console.log("Mensajes", response);

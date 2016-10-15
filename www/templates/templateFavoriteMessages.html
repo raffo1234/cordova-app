@@ -10,13 +10,13 @@
                 </div>
             </header>
             <div class="header-tab">
-                <a href="#/messages/year" class="btn ">
+                <a ui-sref="messages.year({lang: language})" class="btn ">
                     <i class="icon-mensajes"></i><br>
                     <span ng-show="language == 'es'">Todos</span>
                     <span ng-show="language == 'en'">All</span>
                     <span ng-show="language == 'it'">Tutto</span>
                 </a>
-                <a href="#/favorite_messages/year" class="btn active">
+                <a ui-sref="favorite_messages.year({lang: language})" class="btn active">
                     <i class="icon-preferidos"></i><br>
                     <span ng-show="language == 'es'">Favoritos</span>
                     <span ng-show="language == 'en'">Favorites</span>
@@ -53,22 +53,22 @@
             <footer id="footer">
                 <ul class="footer-menu">
                     <li>
-                        <a href="#/messages/year" class="btn active">
+                        <a href="#/messages.year({lang: language})" class="btn active">
                             <i class="icon-mensajes"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/news" class="btn">
+                        <a ui-sref="news({lang: language})" class="btn">
                             <i class="icon-noticias"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/histories" class="btn ">
+                        <a ui-sref="histories({lang: language})" class="btn ">
                             <i class="icon-historia"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/places/place" class="btn">
+                        <a ui-sref="places.place({lang: language})" class="btn">
                             <i class="icon-lugares"></i>
                         </a>
                     </li><!--

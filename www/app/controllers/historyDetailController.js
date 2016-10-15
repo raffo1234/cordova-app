@@ -16,7 +16,7 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
 
 
@@ -31,7 +31,7 @@
         /* ------------------------------------------ */
 
         var result = [];
-        dbHistory.getByLanguage(localStorage.getItem('lang')).then(function(response){
+        dbHistory.getByLanguage($scope.language).then(function(response){
             $scope.result = response;
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});
@@ -64,10 +64,12 @@
 
     }
 
-    angular.module('igospa.services').service("historyDetailServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+    angular.module('igospa.services').service("historyDetailServices", ["$http", "$stateParams", "$q", "API_URL", function ($http, $stateParams, $q, API_URL) {
         this.getData = function (id) {
             var defer = $q.defer();
-            $http.get(API_URL.url + "history/" + localStorage.getItem('lang') + '/' + id)
+            var lang = $stateParams.lang || 'es';
+
+            $http.get(API_URL.url + "history/" + lang + '/' + id)
                     .success(function (data) {
                         defer.resolve(data);
                     })
@@ -81,4 +83,3 @@
     ]);
 
 })();
-

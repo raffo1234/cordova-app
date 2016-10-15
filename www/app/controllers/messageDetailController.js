@@ -17,7 +17,7 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
         /* ------------------------------------------ */
         // isOnline
@@ -26,7 +26,7 @@
         var message_id = null;
         $http({
             method: 'GET',
-            url: API_URL.url + "message/" + localStorage.getItem('lang') + '/' + id,
+            url: API_URL.url + "message/" + $scope.language + '/' + id,
 
         }).then(function(response){
 
@@ -184,4 +184,3 @@
 
     }
 })();
-
