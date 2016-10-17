@@ -3,7 +3,7 @@
 
     angular.module('igospa.controllers').controller('favoriteNewDetailController', favoriteNewDetailController);
 
-    function favoriteNewDetailController($scope, $http, $stateParams, $location, newDetailServices, dbNew, dbFavoriteNew, dbNewTranslation, dbFavoriteNewTranslation){
+    function favoriteNewDetailController($scope, $http, API_URL, $stateParams, $location, newDetailServices, dbNew, dbFavoriteNew, dbNewTranslation, dbFavoriteNewTranslation){
         var main = $('#main'),
         loading = $('.loading-js');
         var id = $stateParams.id;
@@ -25,7 +25,8 @@
             $scope.result = response[0];
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});
-
+            // console.log(response);
+            response[0].image_fullpath = API_URL.url + 'uploads/news/' + response[0].image;
 
             shareButtons(response);
         });

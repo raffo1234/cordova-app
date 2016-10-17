@@ -13,7 +13,7 @@
                 <img src="assets/icons/loading-dark.svg" class="loading loading-js" width="32" />
                 <div class="header-carousel-inner header-carousel-inner-js header-places">
 
-                    <a ui-sref="places.place({id: item.id})" class="btn-thumb" ui-sref-active="active" ng-repeat="item in result | orderBy:'id' track by item.id" >
+                    <a ui-sref="places.place({lang: language, id: item.id})" class="btn-thumb" ui-sref-active="active" ng-repeat="item in result | orderBy:'id' track by item.id" >
                        	<span style="background-image: url('{{ img.image }}'); background-size: cover;" ng-repeat="img in item.images_arr | limitTo:1"></span>
                     </a>
                 </div>
@@ -39,22 +39,22 @@
             <footer id="footer">
                 <ul class="footer-menu">
                     <li>
-                        <a href="#/messages/year" class="btn ">
+                        <a ui-sref="messages.year({lang: language})" class="btn ">
                             <i class="icon-mensajes"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/news" class="btn">
+                        <a ui-sref="news({lang: language})" class="btn">
                             <i class="icon-noticias"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/histories" class="btn ">
+                        <a ui-sref="histories({lang: language})" class="btn ">
                             <i class="icon-historia"></i>
                         </a>
                     </li><!--
                     --><li>
-                        <a href="#/places/place" class="btn active">
+                        <a ui-sref="places.place({lang: language})" class="btn active">
                             <i class="icon-lugares"></i>
                         </a>
                     </li><!--

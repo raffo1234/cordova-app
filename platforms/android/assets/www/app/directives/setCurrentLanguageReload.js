@@ -10,18 +10,18 @@
         return {
             restrict: 'A',
             link: function ($scope, element, attrs) {
-                
-                var currentLanguage = '';
-			    var btn = $('.btn-language-js');
 
-			    btn.on('click', function(){
-                    
-			        var self = $(this);
-			        currentLanguage = self.data('lang');
-			        localStorage.setItem('lang', currentLanguage);
-                    $state.go($state.current, {}, {reload: true});
-			    });
-            
+               var currentLanguage = '';
+			      var btn = $('.btn-language-js');
+
+      		    btn.on('click', function(){
+
+      		        var self = $(this);
+      		        currentLanguage = self.data('lang');
+      		      //   localStorage.setItem('lang', currentLanguage);
+                    $state.go($state.current, {lang: currentLanguage}, {reload: true});
+      		    });
+
              }
         }
     }

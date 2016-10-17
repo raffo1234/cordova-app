@@ -15,7 +15,7 @@
         /* ------------------------------------------ */
         // show language
         /* ------------------------------------------ */
-        $scope.language = localStorage.getItem('lang');
+        $scope.language = $stateParams.lang || 'es';
 
 
 
@@ -43,7 +43,7 @@
         // isOffline
         /* ------------------------------------------ */
         var result = [];
-        dbPeople.getByIdLanguage(id, localStorage.getItem('lang')).then(function(response){
+        dbPeople.getByIdLanguage(id, $scope.language).then(function(response){
             $scope.result = response;
             TweenLite.to(loading, .45, {opacity: 0});
             TweenLite.to(main, 1, {opacity: 1});
@@ -51,10 +51,11 @@
 
     }
 
-    angular.module('igospa.services').service("personageDetailServices", ["$http", "$q", "API_URL", function ($http, $q, API_URL) {
+    angular.module('igospa.services').service("personageDetailServices", ["$http", "$stateParams", "$q", "API_URL", function ($http, $stateParams, $q, API_URL) {
         this.getData = function (id, $location) {
             var defer = $q.defer();
-            $http.get(API_URL.url + "people/" + localStorage.getItem('lang') + '/' + id)
+            var lang = $stateParams.lang || 'es';
+            $http.get(API_URL.url + "people/" + lang + '/' + id)
                     .success(function (data) {
                         defer.resolve(data);
                     })
@@ -68,4 +69,3 @@
     ]);
 
 })();
-
