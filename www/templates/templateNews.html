@@ -34,6 +34,12 @@
 
                          <div class="listnews news-js">
 
+                             <div ng-show="result.length == 0" class="wrapper-alert">
+                                 <br>
+                                 <div ng-show="language == 'es'" class="alert alert-info">No hay noticias.</div>
+                                 <div ng-show="language == 'en'" class="alert alert-info">No news.</div>
+                                 <div ng-show="language == 'it'" class="alert alert-info">Nessuna notizia.</div>
+                             </div>
                              <a ui-sref="new({lang: language, id:item.id})" class="listnews-item" ng-repeat="item in result">
                                   <span class="date">
                                       <span class="month">
