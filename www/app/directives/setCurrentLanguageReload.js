@@ -18,8 +18,8 @@
 
       		        var self = $(this);
       		        currentLanguage = self.data('lang');
-      		      //   localStorage.setItem('lang', currentLanguage);
-                    $state.go($state.current, {lang: currentLanguage}, {reload: true});
+      		        localStorage.setItem('lang', currentLanguage);
+                  $state.go($state.current, {lang: currentLanguage}, {reload: true});
       		    });
 
              }

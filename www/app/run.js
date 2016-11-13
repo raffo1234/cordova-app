@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('igospa')
-    .run(['$rootScope', '$state', '$stateParams', 'DB', 'dbLanguage',
+    .run(['$rootScope', '$location', '$state', '$stateParams', 'DB', 'dbLanguage',
         'dbMessage',
         'dbMessageSync',
         'dbMessageTranslation',
@@ -25,7 +25,7 @@
         'dbPlaceImageSync',
         'dbPlaceTranslation',
         'dbPlaceTranslationSync',
-        function ($rootScope, $state, $stateParams, DB, dbLanguage,
+        function ($rootScope, $location, $state, $stateParams, DB, dbLanguage,
             dbMessage,
             dbMessageSync,
             dbMessageTranslation,
@@ -56,10 +56,6 @@
             DB.init();
 
 
-            // set default language
-            if(localStorage.getItem('lang') === null){
-                localStorage.setItem('lang', 'es');
-            }
 
 
             // Populate table language
@@ -71,10 +67,11 @@
             dbLanguage.insert(languages);
 
 
-            // if !isOnline return false;
-            // ...
+            //
 
-
+            // if(){
+            //   $state.go('');
+            // }
 
             // Populate websql - local database
 
@@ -100,11 +97,14 @@
             // dbPlaceTranslationSync.getAllData();
 
 
-
-
-
             // dbHistory.dropTable();
             // dbHistoryTranslation.dropTable();
+
+
+            
+            // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+            //   console.log('erer222')
+            // });
         }
       ]
     );
